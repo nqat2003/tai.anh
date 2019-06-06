@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
-#define SIZE 3
+#define SIZE 4
 using namespace std;
 char player1[30];
 char player2[30];
@@ -26,7 +26,7 @@ int play(int pNum, int rowNum, int colNum)
 		if (playZone[rowNum][c] == 0) continue;
 		count++;
 	}
-	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
+	if ((sum == SIZE || sum == SIZE * 2) && count == SIZE) return pNum;
 	sum = 0;
 	count = 0;
 	//check col
@@ -36,7 +36,7 @@ int play(int pNum, int rowNum, int colNum)
 		if (playZone[r][colNum] == 0) continue;
 		count++;
 	}
-	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
+	if ((sum == SIZE || sum == SIZE * 2) && count == SIZE) return pNum;
 	sum = 0;
 	count = 0;
 	//check specials case 1
@@ -46,7 +46,7 @@ int play(int pNum, int rowNum, int colNum)
 		if (playZone[r][r] == 0) continue;
 		count++;
 	}
-	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
+	if ((sum == SIZE || sum == SIZE * 2) && count == SIZE) return pNum;
 	sum = 0;
 	count = 0;
 	//check specials case 2
@@ -56,7 +56,7 @@ int play(int pNum, int rowNum, int colNum)
 		if (playZone[r][SIZE - 1 - r] == 0) continue;
 		count++;
 	}
-	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
+	if ((sum == SIZE || sum == SIZE * 2) && count == SIZE) return pNum;
 	sum = 0;
 	return sum;
 }
@@ -88,9 +88,13 @@ bool checkNoOneWin()
 int main()
 {
 	int pNum = 1, rowNum, colNum;
-	int result;
+	int result, check;
+	cout << "Welcome to TicTacToe !" << endl << "Input 1 for play, 0 to exit: ";
+	cin >> check;
+	if (check == 0) return 0;
 	inputName();
-	cout << "Player 1: " << player1 << endl << "Player 2: " << player2 << endl;
+	cout << "Player 1: " << player1 << endl << "Player 2: " << player2 << endl 
+		<< "Playzone (0 mean It's empty): " << endl;
 	showPlayZone();
 	cout << endl;
 	do 
