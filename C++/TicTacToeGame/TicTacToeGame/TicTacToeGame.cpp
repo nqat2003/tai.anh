@@ -16,60 +16,44 @@ void inputName()
 	cout << "Enter Player 2's Name: ";
 	cin >> player2;
 }
-void pick(int pNum, int rowNum, int colNum) 
-{
-	if (pNum == 1) 
-	{
-		playZone[rowNum][colNum] = 1;
-	}
-	else
-	{
-		playZone[rowNum][colNum] = 2;
-	}
-}
 int play(int pNum, int rowNum, int colNum)
-{	
+{
 	int sum = 0;
-	if (pNum == 1)
+	playZone[rowNum][colNum] = pNum == 1 ? 1 : 2;
+	for (register int c = 0; c < SIZE; c++)
 	{
-		//check row
-		playZone[rowNum][colNum] = 1;
-		for (register int c = 0; c < SIZE; c++)
-		{
-			if (playZone[rowNum][c] == 0) break;
-			sum += playZone[rowNum][c];
-		}
-		if (sum == SIZE || sum == SIZE*2) return pNum;
-		sum = 0;
-		//check col
-		for (register int r = 0; r < SIZE; r++)
-		{
-			if (playZone[r][colNum] == 0) break;
-			sum += playZone[r][colNum];
-		}
-		if (sum == SIZE || sum == SIZE*2) return pNum;
-		sum = 0;
-	}
-	else {
-		//check row
-		playZone[rowNum][colNum] = 2;
-		for (register int c = 0; c < SIZE; c++)
-		{
-			if (playZone[rowNum][c] == 0) break;
-			sum += playZone[rowNum][c];
-		}
+		sum += playZone[rowNum][c];
+		if (playZone[rowNum][c] == 0) break;
 		if (sum == SIZE || sum == SIZE * 2) return pNum;
-		sum = 0;
-		//check col
-		for (register int r = 0; r < SIZE; r++)
-		{
-			if (playZone[r][colNum] == 0) break;
-			sum += playZone[r][colNum];
-		}
-		if (sum == SIZE || sum == SIZE * 2) return pNum;
-		sum = 0;
 	}
-	return 0;
+	
+	sum = 0;
+	//check col
+	for (register int r = 0; r < SIZE; r++)
+	{
+		sum += playZone[r][colNum];
+		if (playZone[r][colNum] == 0) break;
+		if (sum == SIZE || sum == SIZE * 2) return pNum;;
+	}
+	sum = 0;
+	//check specials case 1
+	for (register int r = 0; r < SIZE; r++)
+	{
+		sum += playZone[r][r];
+		if (playZone[r][r] == 0) break;
+		if (sum == SIZE || sum == SIZE * 2) return pNum;
+	}
+	
+	sum = 0;
+	//check specials case 2
+	for (register int r = 0; r < SIZE; r++)
+	{
+		sum += playZone[r][SIZE - 1 - r];
+		if (playZone[r][SIZE - 1 - r] == 0) break;
+		if (sum == SIZE || sum == SIZE * 2) return pNum;
+	}
+	sum = 0;
+	return sum;
 }
 void showPlayZone() {
 	for (register int i = 0; i < SIZE; i++)
@@ -91,20 +75,27 @@ int main()
 	cout << endl;
 	do 
 	{
+		bool error = false;
 		do {
-			cout << "Player " << pNum << " pick: ";
+			cout << endl << "Player " << pNum << " pick: ";
 			cin >> rowNum;
 			cin >> colNum;
 			if (rowNum >= SIZE || colNum >= SIZE)
 			{
 				cout << "Position can bigger than " << SIZE << endl;
+				error = true;
 			}
-		} while (rowNum >= SIZE || colNum >= SIZE);
+			if (playZone[rowNum][colNum] != 0)
+			{
+				cout << "That position has been choose. Please choose another position";
+				error = true;
+			}
+		} while (error);
 		result = play(pNum, rowNum, colNum);
 		pNum = pNum == 1 ? 2 : 1;
-		cout << "Playzone now: " << endl;
+		cout << "Playzone now: ";
 		showPlayZone();
-		cout << endl;
+		cout << endl << "========================" << endl;
 		
 	} while (result == 0);
 	pNum = pNum == 1 ? 2 : 1;
