@@ -18,40 +18,45 @@ void inputName()
 }
 int play(int pNum, int rowNum, int colNum)
 {
-	int sum = 0;
+	int sum = 0, count = 0;
 	playZone[rowNum][colNum] = pNum == 1 ? 1 : 2;
 	for (register int c = 0; c < SIZE; c++)
 	{
 		sum += playZone[rowNum][c];
-		if (playZone[rowNum][c] == 0) break;
-		if (sum == SIZE || sum == SIZE * 2) return pNum;
+		if (playZone[rowNum][c] == 0) continue;
+		count++;
 	}
-	
+	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
 	sum = 0;
+	count = 0;
 	//check col
 	for (register int r = 0; r < SIZE; r++)
 	{
 		sum += playZone[r][colNum];
-		if (playZone[r][colNum] == 0) break;
-		if (sum == SIZE || sum == SIZE * 2) return pNum;;
+		if (playZone[r][colNum] == 0) continue;
+		count++;
 	}
+	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
 	sum = 0;
+	count = 0;
 	//check specials case 1
 	for (register int r = 0; r < SIZE; r++)
 	{
 		sum += playZone[r][r];
-		if (playZone[r][r] == 0) break;
-		if (sum == SIZE || sum == SIZE * 2) return pNum;
+		if (playZone[r][r] == 0) continue;
+		count++;
 	}
-	
+	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
 	sum = 0;
+	count = 0;
 	//check specials case 2
 	for (register int r = 0; r < SIZE; r++)
 	{
 		sum += playZone[r][SIZE - 1 - r];
-		if (playZone[r][SIZE - 1 - r] == 0) break;
-		if (sum == SIZE || sum == SIZE * 2) return pNum;
+		if (playZone[r][SIZE - 1 - r] == 0) continue;
+		count++;
 	}
+	if ((sum == SIZE || sum == SIZE * 2) && count == 3) return pNum;
 	sum = 0;
 	return sum;
 }
@@ -84,17 +89,18 @@ int main()
 {
 	int pNum = 1, rowNum, colNum;
 	int result;
-	// inputName();
-	// cout << "Player 1: " << player1 << endl << "Player 2: " << player2 << endl;
+	inputName();
+	cout << "Player 1: " << player1 << endl << "Player 2: " << player2 << endl;
 	showPlayZone();
 	cout << endl;
 	do 
 	{
-		bool error = false;
+		bool error;
 		do {
 			cout << endl << "Player " << pNum << " pick: ";
 			cin >> rowNum;
 			cin >> colNum;
+			error = false;
 			if (rowNum >= SIZE || colNum >= SIZE)
 			{
 				cout << "Position can bigger than " << SIZE << endl;
@@ -107,15 +113,17 @@ int main()
 			}
 		} while (error);
 		result = play(pNum, rowNum, colNum);
-		if (checkNoOneWin) goto NOONEWIN;
 		pNum = pNum == 1 ? 2 : 1;
 		cout << "Playzone now: ";
 		showPlayZone();
+		if (checkNoOneWin()) goto NOONEWIN;
 		cout << endl << "========================" << endl;
 		
 	} while (result == 0);
-	pNum = pNum == 1 ? 2 : 1;
-	cout << "Player " << pNum << " win" << endl;
+	char* winner = pNum == 1 ? player2 : player1;
+	cout << "Congratulations " << winner << ", you are winner" << endl;
+	system("pause"); 
+	return 0;
 	NOONEWIN:cout << "Both of you are so great. This match draw.";
 	system("pause");
     return 0;
