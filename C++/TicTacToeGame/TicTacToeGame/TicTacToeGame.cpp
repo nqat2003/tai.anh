@@ -50,54 +50,26 @@ int play(int pNum, int rowNum, int colNum)
 		if (sum == SIZE || sum == SIZE*2) return pNum;
 		sum = 0;
 	}
-	return 0;
-}
-bool win() {
-	int sum = 0;
-	int count = 0;
-	//Check row win
-	for (register int r = 0; r < SIZE; r++)
-	{
+	else {
+		//check row
+		playZone[rowNum][colNum] = 2;
 		for (register int c = 0; c < SIZE; c++)
 		{
-			if (playZone[r][c] == 0) 
-				continue;
-			sum += playZone[r][c];
-			count++;
+			if (playZone[rowNum][c] == 0) break;
+			sum += playZone[rowNum][c];
 		}
-		if (count != 3)
-		{
-			return false;
-		}
-		else {
-			if (sum == 3 || sum == 6) 
-				return true;
-		}
-		count = 0;
+		if (sum == SIZE || sum == SIZE * 2) return pNum;
 		sum = 0;
-	}
-	//Check column win
-	/*for (register int c = 0; c < SIZE; c++)
-	{
+		//check col
 		for (register int r = 0; r < SIZE; r++)
 		{
-			if (playZone[c][r] == 0)
-				continue;
-			sum += playZone[c][r];
-			count++;
+			if (playZone[r][colNum] == 0) break;
+			sum += playZone[r][colNum];
 		}
-		if (count != 3)
-		{
-			return false;
-		}
-		else {
-			if (sum == 3 || sum == 6)
-				return true;
-		}
+		if (sum == SIZE || sum == SIZE * 2) return pNum;
 		sum = 0;
-	}*/
-
-	return false;
+	}
+	return 0;
 }
 void showPlayZone() {
 	for (register int i = 0; i < SIZE; i++)
