@@ -1,3 +1,3 @@
 ﻿  TicTacToeGame.cpp
-  TicTacToeGame.vcxproj -> F:\doTicTacToeGame\C++\TicTacToeGame\Debug\TicTacToeGame.exe
-  TicTacToeGame.vcxproj -> F:\doTicTacToeGame\C++\TicTacToeGame\Debug\TicTacToeGame.pdb (Full PDB)
+f:\dotictactoegame\c++\tictactoegame\tictactoegame\tictactoegame.cpp(110): warning C4551: function call missing argument list
+LINK : fatal error LNK1201: error writing to program database 'F:\doTicTacToeGame\C++\TicTacToeGame\Debug\TicTacToeGame.pdb'; check for insufficient disk space, invalid path, or insufficient privilege
