@@ -65,6 +65,21 @@ void showPlayZone() {
 		}
 	}
 }
+bool checkNoOneWin() 
+{
+	int count = 0;
+	for (register int r = 0; r < SIZE; r++)
+	{
+		for (register int c = 0; c < SIZE; c++)
+		{
+			if (playZone[r][c] == 0)
+				return false;
+			count++;
+		}
+	}
+	if (count == SIZE * SIZE) return true;
+	return false;
+}
 int main()
 {
 	int pNum = 1, rowNum, colNum;
@@ -92,6 +107,7 @@ int main()
 			}
 		} while (error);
 		result = play(pNum, rowNum, colNum);
+		if (checkNoOneWin) goto NOONEWIN;
 		pNum = pNum == 1 ? 2 : 1;
 		cout << "Playzone now: ";
 		showPlayZone();
@@ -100,7 +116,7 @@ int main()
 	} while (result == 0);
 	pNum = pNum == 1 ? 2 : 1;
 	cout << "Player " << pNum << " win" << endl;
-	
+	NOONEWIN:cout << "Both of you are so great. This match draw.";
 	system("pause");
     return 0;
 }
