@@ -11,10 +11,12 @@ int playZone[SIZE][SIZE];
 void inputName()
 {
 	cout << "Enter Player 1's Name: ";
-	cin >> player1;
 	cin.ignore();
+	cin.get(player1, 30);
+	
 	cout << "Enter Player 2's Name: ";
-	cin >> player2;
+	cin.ignore();
+	cin.get(player2, 30);
 }
 int play(int pNum, int rowNum, int colNum)
 {
@@ -127,7 +129,7 @@ int main()
 		pNum = pNum == 1 ? 2 : 1;
 		cout << "Playzone now: ";
 		showPlayZone();
-		if (checkNoOneWin()) goto NOONEWIN;
+		if (checkNoOneWin() && result == 0) goto NOONEWIN;
 		cout << endl << "========================" << endl;
 		
 	} while (result == 0);
