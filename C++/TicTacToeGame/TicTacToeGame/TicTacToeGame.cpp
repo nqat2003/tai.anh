@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
-#define SIZE 4
+#define SIZE 3
 using namespace std;
 char player1[30];
 char player2[30];
@@ -85,16 +85,23 @@ bool checkNoOneWin()
 	if (count == SIZE * SIZE) return true;
 	return false;
 }
+inline void printRow()
+{
+	cout << "=================================================================" << endl;
+}
 int main()
 {
 	int pNum = 1, rowNum, colNum;
 	int result, check;
+	printRow();
 	cout << "Welcome to TicTacToe !" << endl << "Input 1 for play, 0 to exit: ";
 	cin >> check;
 	if (check == 0) return 0;
+	printRow();
 	inputName();
-	cout << "Player 1: " << player1 << endl << "Player 2: " << player2 << endl 
-		<< "Playzone (0 mean It's empty): " << endl;
+	cout << "Player 1: " << player1 << endl << "Player 2: " << player2 << endl;
+	printRow();
+	cout << "Playzone (0 mean It's empty): " << endl;
 	showPlayZone();
 	cout << endl;
 	do 
@@ -124,11 +131,12 @@ int main()
 		cout << endl << "========================" << endl;
 		
 	} while (result == 0);
+	printRow();
 	char* winner = pNum == 1 ? player2 : player1;
 	cout << "Congratulations " << winner << ", you are winner" << endl;
 	system("pause"); 
 	return 0;
-	NOONEWIN:cout << "Both of you are so great. This match draw.";
+	NOONEWIN:cout << endl << "Both of you are so great. This match draw.";
 	system("pause");
     return 0;
 }
