@@ -81,6 +81,7 @@ bool checkID(int id)
 	{
 		if (student_arr[i].id == id)
 		{
+			cout << "This ID already have." << endl;
 			return true;
 		}
 	}
@@ -94,7 +95,12 @@ Student input()
 	do {
 		cout << "Id: ";
 		cin >> student.id;
-	} while (checkID(student.id));
+		if (!checkID(student.id))
+		{
+			break;
+		}
+			
+	} while (true);
 
 	cin.ignore();
 	cout << "Name: ";
@@ -130,9 +136,12 @@ void loadFileToArray(string FileName)
 		{
 			Student s;
 			register string name;
+			f >> s.id;
+
 			f >> name;
 			Replace(name, '_', ' ');
-			f >> s.id;
+
+			
 			s.name = name;
 			f >> s.score;
 
