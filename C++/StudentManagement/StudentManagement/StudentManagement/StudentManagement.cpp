@@ -28,7 +28,44 @@ void menu()
 	cout << "----------------------------------";
 }
 
+void routes() {
+	int choose;
+	while (true)
+	{
+		menu();
+		cout << "Choose: ";
+		cin >> choose;
 
+		fflush(stdin);
+
+		if (choose == 0) {
+			break;
+		}
+		if (choose == 1)
+		{
+			Student student = input();
+			student_arr[realSize] = student;
+			realSize++;
+		}
+		else if (choose == 2)
+		{
+			cout << endl;
+			printList();
+			cout << endl;
+		}
+		else if (choose == 3)
+		{
+			saveToFile("file.txt");
+		}
+		else if (choose == 4)
+		{
+			loadFileToArray("fave.txt");
+			printList();
+		}
+
+	}
+
+}
 Student input()
 {
 	Student student;
@@ -47,24 +84,70 @@ Student input()
 		if (student.score > 10 || student.score < 0)
 			cout << "Score incorrect. Input score again: ";
 	} while (true);
-	realSize++;
+	
 	return student;
 }
 
+void loadFileToArray(string FileName)
+{
 
+	FILE *f = fopen(FileName.c_str(), "r");
+	if (f != nullptr)
+	{
+		int num;
+		fscanf(f, "%d", &num);
+		for (int i = 0; i < num; i++)
+		{
+			Student s;
+			fscanf(f, "%d %s %0.2f", &s.id, &s.name, &s.score);
+
+			student_arr[i] = s;
+		}
+
+		fclose(f);
+	}
+	else
+	{
+		cout << "LOAD ERROR" << endl;
+	}
+}
+
+void saveToFile(string fileName)
+{
+	FILE *f = fopen(fileName.c_str(), "w");
+	if (f != nullptr)
+	{
+		fprintf(f, "%d", realSize);
+		for (int i = 0; i < realSize; i++)
+		{
+			Student s = student_arr[i];
+
+
+			fprintf(f, "\n%d %s %0.2f", s.id, s.name, s.score);
+		}
+
+		cout << "Save to " << fileName << endl;
+
+		fclose(f);
+	}
+	else
+	{
+		cout << "ERROR" << endl;
+	}
+}
 
 void printList()
 {
 	printf("%-5d %-20s %f\n", "ID", "NAME", "SCORE");
-	for (int i = 0; i < g_PersonList.size(); i++)
+	for (int i = 0; i < realSize; i++)
 	{
-		g_PersonList.at(i).print();
+		printf("%-5d %-20s %f\n", student_arr[i].id, student_arr[i].name, student_arr[i].score);
 		cout << endl;
 	}
 }
 
 void main()
 {
-    
+	routes();
 }
 
