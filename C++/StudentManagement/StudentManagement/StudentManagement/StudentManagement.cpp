@@ -19,12 +19,19 @@ struct Student
 Student *student_arr = new Student[SIZE];
 int realSize = 0;
 
-void menu();
+
 Student input();
+void routes();
+void menu();
 void loadFileToArray(string FileName);
 void saveToFile(string FileName);
 void printList();
 void Replace(string &str, char to, char by);
+
+void main()
+{
+	routes();
+}
 
 void menu()
 {
@@ -46,7 +53,6 @@ void routes() {
 		cin >> choose;
 
 		fflush(stdin);
-
 		if (choose == 0) {
 			break;
 		}
@@ -71,22 +77,23 @@ void routes() {
 			loadFileToArray("file.txt");
 			printList();
 		}
-
 	}
 
 }
+//Check ID input is unique
 bool checkID(int id)
 {
 	for (register int i = 0; i < realSize; i++)
 	{
 		if (student_arr[i].id == id)
 		{
-			cout << "This ID already have." << endl;
+			cout << "This ID already haven." << endl;
 			return true;
 		}
 	}
 	return false;
 }
+
 Student input()
 {
 	Student student;
@@ -98,26 +105,24 @@ Student input()
 		if (!checkID(student.id))
 		{
 			break;
-		}
-			
+		}	
 	} while (true);
 
 	cin.ignore();
 	cout << "Name: ";
 	getline(cin, student.name);
-	
 
 	do
 	{
 		check = false;
 		cout << "Score: ";
 		cin >> student.score;
+		//Check that score can't reach over 0-10
 		if (student.score > 10 || student.score < 0)
 		{
 			cout << "Score incorrect. ";
 			check = true;
 		}
-
 	} while (check);
 	
 	return student;
@@ -125,10 +130,8 @@ Student input()
 
 void loadFileToArray(string FileName)
 {
-
 	ifstream f;
 	f.open(FileName);
-
 	if (f.is_open())
 	{
 		f >> realSize;
@@ -140,11 +143,9 @@ void loadFileToArray(string FileName)
 
 			f >> name;
 			Replace(name, '_', ' ');
-
-			
 			s.name = name;
-			f >> s.score;
 
+			f >> s.score;
 			student_arr[i] = s;
 		}
 
@@ -152,7 +153,7 @@ void loadFileToArray(string FileName)
 	}
 	else
 	{
-		cout << "LOAD ERROR" << endl;
+		cout << "LOAD FILE ERROR." << endl;
 	}
 }
 
@@ -176,7 +177,7 @@ void saveToFile(string fileName)
 	}
 	else
 	{
-		cout << "ERROR" << endl;
+		cout << "SAVE FILE TO ERROR." << endl;
 	}
 }
 
@@ -203,8 +204,5 @@ void Replace(string &str, char to, char by)
 	}
 }
 
-void main()
-{
-	routes();
-}
+
 
