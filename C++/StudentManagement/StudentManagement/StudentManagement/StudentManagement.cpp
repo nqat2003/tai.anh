@@ -3,7 +3,9 @@
 
 #include "stdafx.h"
 #include "iostream"
+#include "fstream"
 #include "string"
+#include "iomanip"
 #define SIZE 100
 using namespace std;
 
@@ -17,15 +19,22 @@ struct Student
 Student *student_arr = new Student[SIZE];
 int realSize = 0;
 
+void menu();
+Student input();
+void loadFileToArray(string FileName);
+void saveToFile(string FileName);
+void printList();
+void Replace(string &str, char to, char by);
+
 void menu()
 {
-	cout << "---------------MENU---------------";
-	cout << "    1. Input                     ";
-	cout << "    2. Display                   ";
-	cout << "    3. Save to file              ";
-	cout << "    4. Load from file            ";
-	cout << "    0. Exit                      ";
-	cout << "----------------------------------";
+	cout << "---------------MENU---------------\n";
+	cout << "    1. Input                     \n";
+	cout << "    2. Display                   \n";
+	cout << "    3. Save to file              \n";
+	cout << "    4. Load from file            \n";
+	cout << "    0. Exit                      \n";
+	cout << "----------------------------------\n";
 }
 
 void routes() {
@@ -59,31 +68,51 @@ void routes() {
 		}
 		else if (choose == 4)
 		{
-			loadFileToArray("fave.txt");
+			loadFileToArray("file.txt");
 			printList();
 		}
 
 	}
 
 }
+bool checkID(int id)
+{
+	for (register int i = 0; i < realSize; i++)
+	{
+		if (student_arr[i].id == id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 Student input()
 {
 	Student student;
-	cout << "Id: ";
-	cin >> student.id;
+	bool check;
+	cout << "Input student information: " << endl;
+	do {
+		cout << "Id: ";
+		cin >> student.id;
+	} while (checkID(student.id));
 
-	cin.ignore(); 
+	cin.ignore();
 	cout << "Name: ";
 	getline(cin, student.name);
-	cin.ignore();
+	
 
 	do
 	{
+		check = false;
 		cout << "Score: ";
 		cin >> student.score;
 		if (student.score > 10 || student.score < 0)
-			cout << "Score incorrect. Input score again: ";
-	} while (true);
+		{
+			cout << "Score incorrect. ";
+			check = true;
+		}
+
+	} while (check);
 	
 	return student;
 }
@@ -91,20 +120,26 @@ Student input()
 void loadFileToArray(string FileName)
 {
 
-	FILE *f = fopen(FileName.c_str(), "r");
-	if (f != nullptr)
+	ifstream f;
+	f.open(FileName);
+
+	if (f.is_open())
 	{
-		int num;
-		fscanf(f, "%d", &num);
-		for (int i = 0; i < num; i++)
+		f >> realSize;
+		for (int i = 0; i < realSize; i++)
 		{
 			Student s;
-			fscanf(f, "%d %s %0.2f", &s.id, &s.name, &s.score);
+			register string name;
+			f >> name;
+			Replace(name, '_', ' ');
+			f >> s.id;
+			s.name = name;
+			f >> s.score;
 
 			student_arr[i] = s;
 		}
 
-		fclose(f);
+		f.close();
 	}
 	else
 	{
@@ -114,21 +149,21 @@ void loadFileToArray(string FileName)
 
 void saveToFile(string fileName)
 {
-	FILE *f = fopen(fileName.c_str(), "w");
-	if (f != nullptr)
+	ofstream f;
+	f.open(fileName);
+	if (f.is_open())
 	{
-		fprintf(f, "%d", realSize);
-		for (int i = 0; i < realSize; i++)
+		f << realSize << endl;
+		for (register int i = 0; i < realSize; i++)
 		{
 			Student s = student_arr[i];
-
-
-			fprintf(f, "\n%d %s %0.2f", s.id, s.name, s.score);
+			register string name = student_arr[i].name;
+			Replace(name, ' ', '_');
+			f << student_arr[i].id << " " << name << " " << student_arr[i].score << endl;
 		}
 
 		cout << "Save to " << fileName << endl;
-
-		fclose(f);
+		f.close();
 	}
 	else
 	{
@@ -138,11 +173,24 @@ void saveToFile(string fileName)
 
 void printList()
 {
-	printf("%-5d %-20s %f\n", "ID", "NAME", "SCORE");
-	for (int i = 0; i < realSize; i++)
+	cout << setw(10) << left << "ID" << setw(30) << left << "NAME " << setw(5) << left << "SCORE" << endl;
+	for (register int i = 0; i < realSize; i++)
 	{
-		printf("%-5d %-20s %f\n", student_arr[i].id, student_arr[i].name, student_arr[i].score);
+		cout << setw(10) << left << student_arr[i].id 
+			 << setw(30) << left << student_arr[i].name 
+			 << setw(5)  << left << student_arr[i].score;
 		cout << endl;
+	}
+}
+
+void Replace(string &str, char to, char by)
+{
+	for (int i = 0; i < str.length(); i++)
+	{
+		if (str.at(i) == to)
+		{
+			str.at(i) = by;
+		}
 	}
 }
 
