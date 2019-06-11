@@ -20,13 +20,14 @@ Student *student_arr = new Student[SIZE];
 int realSize = 0;
 
 
-Student input();
-void routes();
-void menu();
-void loadFileToArray(string FileName);
-void saveToFile(string FileName);
-void printList();
-void Replace(string &str, char to, char by);
+Student input();								 //User input student
+bool checkID(int id);							 //Check ID input is unique
+void routes();							         //Excute user choose
+void menu();									 //Display menu
+void loadFileToArray(string FileName);			 //Load data from file and assign to array
+void saveToFile(string FileName);				 //Save data from array to file
+void printList();								 //Print data from array
+void Replace(string &str, char to, char by);     //Replace char 'to' by char 'by' in string str
 
 void main()
 {
@@ -80,7 +81,7 @@ void routes() {
 	}
 
 }
-//Check ID input is unique
+
 bool checkID(int id)
 {
 	for (register int i = 0; i < realSize; i++)
@@ -134,8 +135,10 @@ void loadFileToArray(string FileName)
 	f.open(FileName);
 	if (f.is_open())
 	{
-		f >> realSize;
-		for (int i = 0; i < realSize; i++)
+		int *pointer;
+		pointer = &realSize;
+		f >> *pointer;
+		for (int i = 0; i < *pointer; i++)
 		{
 			Student s;
 			register string name;
