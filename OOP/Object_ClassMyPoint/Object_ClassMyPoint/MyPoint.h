@@ -8,12 +8,13 @@ private:
 public:
 	MyPoint();
 	MyPoint(int, int);
+	~MyPoint();
 	void Display();
-	void SetX(int x);
+	void SetX(int);
 	int GetX();
-	void SetY(int y);
+	void SetY(int);
 	int GetY();
-	int Distance(MyPoint p);
+	float Distance(MyPoint p);
 	~MyPoint();
 };
 
