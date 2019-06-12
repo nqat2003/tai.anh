@@ -5,46 +5,51 @@
 
 using namespace std;
 
-MyPoint::MyPoint()
+MyPoint::MyPoint():
+	mPosX(0),
+	mPosY(0)
 {
 }
 
-MyPoint::MyPoint(int, int)
+MyPoint::MyPoint(int x, int y)
 {
+	mPosX = x;
+	mPosY = y;
 }
 
 void MyPoint::Display()
 {
-	cout << "mPosX = " << this->GetX() << ", mPosY = " << this->GetY();
+	cout << "mPosX = " << GetX() << ", mPosY = " << GetY() << endl;
 }
 
 void MyPoint::SetX(int x)
 {
-	this->mPosX = x;
+	mPosX = x;
 }
 
 int MyPoint::GetX()
 {
-	return this->mPosX;
+	return mPosX;
 }
 
 void MyPoint::SetY(int y)
 {
-	this->mPosY = y;
+	mPosY = y;
 }
 
 int MyPoint::GetY()
 {
-	return this->mPosY;
+	return mPosY;
 }
 
-int MyPoint::Distance(MyPoint p)
+float MyPoint::Distance(MyPoint p)
 {
-	return sqrt(pow((this->GetX - p.GetX), 2) + pow((this->GetY - p.GetY), 2));
+	return sqrt(pow((this->GetX() - p.GetX()), 2) + pow((this->GetY() - p.GetY()), 2));
 }
 
 
 
 MyPoint::~MyPoint()
 {
+	
 }
