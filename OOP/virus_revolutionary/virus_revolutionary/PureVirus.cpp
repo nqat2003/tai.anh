@@ -44,14 +44,15 @@ void PureVirus::LoadADNInformation()
 
 void PureVirus::ReduceResistance(int medicine_resistance)
 {
+	
 	m_resistance -= medicine_resistance;
 	if (m_resistance <= 0)
 	{
-		this->DoDie();
+		DoDie();
 	}
 	else
 	{
-		this->DoClone();
+		DoClone();
 	}
 }
 
