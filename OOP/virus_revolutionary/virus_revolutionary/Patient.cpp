@@ -47,25 +47,23 @@ void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
 	int count = 0;
-	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
 	{
 		PureVirus *a = *it;
 		a->ReduceResistance(medicine_resistance);
 		if (a->GetResistance() <= 0)
 		{
-			auto tam = it;
-			tam++;
-			m_virusList.erase(it);
-			it = tam;
-			continue;
+			it = m_virusList.erase(it);
 		}
-		cout << a->GetResistance() << " ";
-		totalVirusResistance += a->GetResistance();
-		it++;
-		count++;
-
+		else {
+			++it;
+			totalVirusResistance += a->GetResistance();
+			count++;
+			cout << a->GetResistance() << " ";
+		}
 	}
-	cout << endl << "Patient Resistance: " << m_resistance << endl;
+	cout << endl << "Patient's resistance: " << m_resistance << endl;
+	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
 	cout << "Number of virus: " << count << endl;
 	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
 	if (count == 0)
