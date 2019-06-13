@@ -6,7 +6,6 @@
 #include  <list>
 using namespace std;
 
-
 Patient::Patient()
 {
 	InitResistance();
@@ -25,8 +24,10 @@ void Patient::InitResistance()
 
 void Patient::DoStart()
 {
+	m_virusList.clear();
 	m_state = 1;
 	int virusNum = rand() % (20 - 10 + 1) + 10;
+	
 	for (register int i = 0; i < virusNum; i++)
 	{
 		int virusType = rand() % 2 + 1;
@@ -39,9 +40,7 @@ void Patient::DoStart()
 			m_virusList.push_back(new DengueVirus());
 		}
 	}
-	
 }
-
 void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
