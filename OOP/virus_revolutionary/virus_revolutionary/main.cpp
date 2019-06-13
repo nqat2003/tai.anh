@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "FluVirus.h"
 #include "DengueVirus.h"
+#include "Patient.h"
 #include "iostream"
 #include <time.h>
 
@@ -12,9 +13,8 @@ using namespace std;
 void main()
 {
 	srand(time(NULL));
-	FluVirus *a = new FluVirus();
-	DengueVirus *b = new DengueVirus();
-	//cout << "DNA = " << a->GetDNA();
+	Patient a = Patient();
+	cout << a.m_resistance;
 	system("pause");
 }
 

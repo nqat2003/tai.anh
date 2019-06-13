@@ -10,7 +10,11 @@ DengueVirus::DengueVirus()
 {
 	DoBorn();
 	InitResistance();
-	cout << m_protein << " - " << m_resistance << endl;
+}
+
+DengueVirus::DengueVirus(char * dna, int resistance, char abc[]) : PureVirus(dna,resistance)
+{
+	strcpy_s(m_protein, abc);
 }
 
 
