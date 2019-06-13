@@ -6,10 +6,11 @@ private:
 	int m_Color;
 public:
 	FluVirus();
+	FluVirus(char*, int, int);
 	~FluVirus();
 	void DoBorn();
-	FluVirus DoClone(FluVirus);
+	void DoClone();
 	void DoDie();
-	void InitResistance(int i);
+	void InitResistance(int); 
 };
 
