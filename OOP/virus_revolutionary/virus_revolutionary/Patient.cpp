@@ -39,6 +39,7 @@ void Patient::DoStart()
 			m_virusList.push_back(new DengueVirus());
 		}
 	}
+	
 }
 
 void Patient::TakeMedicine(int medicine_resistance)
@@ -46,11 +47,11 @@ void Patient::TakeMedicine(int medicine_resistance)
 	int totalVirusResistance = 0;
 	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
 	{
-		PureVirus *a = *it;
-		a->ReduceResistance(medicine_resistance);
-		totalVirusResistance += a->GetResistance();
+		(*it)->ReduceResistance(medicine_resistance);
+		totalVirusResistance += (*it)->GetResistance();
 	}
-	cout << "Resistance: " << m_resistance << endl;
+	cout << "Patient Resistance: " << m_resistance << endl;
+	cout << "Number of virus: " << m_virusList.size();
 	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
 	if (totalVirusResistance >= m_resistance)
 	{

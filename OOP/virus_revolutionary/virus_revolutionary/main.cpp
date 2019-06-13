@@ -14,7 +14,8 @@ void main()
 {
 	srand(time(NULL));
 	Patient a = Patient();
-	a.TakeMedicine(20);
+	a.m_virusList.size();
+	//a.TakeMedicine(20);
 	system("pause");
 }
 
