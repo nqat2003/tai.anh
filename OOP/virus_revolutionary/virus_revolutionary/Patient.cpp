@@ -1,10 +1,12 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Patient.h"
 #include "FluVirus.h"
 #include "DengueVirus.h"
 #include "iostream"
 #include  <list>
 using namespace std;
+
+list<PureVirus*> Patient::m_virusList = list<PureVirus*>();
 
 Patient::Patient()
 {
@@ -44,19 +46,39 @@ void Patient::DoStart()
 void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
+	int count = 0;
 	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
 	{
-		(*it)->ReduceResistance(medicine_resistance);
-		totalVirusResistance += (*it)->GetResistance();
+		PureVirus *a = *it;
+		a->ReduceResistance(medicine_resistance);
+		if (a->GetResistance() <= 0)
+		{
+			auto tam = it;
+			tam++;
+			m_virusList.erase(it);
+			it = tam;
+			continue;
+		}
+		cout << a->GetResistance() << " ";
+		totalVirusResistance += a->GetResistance();
+		it++;
+		count++;
+
 	}
-	cout << "Patient Resistance: " << m_resistance << endl;
-	cout << "Number of virus: " << m_virusList.size();
+	cout << endl << "Patient Resistance: " << m_resistance << endl;
+	cout << "Number of virus: " << count << endl;
 	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
+	if (count == 0)
+	{
+		cout << "All virus dead" << endl;
+		system("pause"); exit(0);
+	}
 	if (totalVirusResistance >= m_resistance)
 	{
 		DoDie();
 		m_state = 0;
 		cout << "You dead.";
+		system("pause"); exit(0);
 	}
 }
 
@@ -70,4 +92,9 @@ void Patient::DoDie()
 int Patient::GetRegistance()
 {
 	return m_resistance;
+}
+
+int Patient::GetState()
+{
+	return m_state;
 }
