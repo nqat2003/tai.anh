@@ -10,6 +10,12 @@ PureVirus::PureVirus()
 {
 }
 
+PureVirus::PureVirus(char * dna, int resistance)
+{
+	m_dna = dna;
+	m_resistance = resistance;
+}
+
 
 PureVirus::~PureVirus()
 {
@@ -36,24 +42,32 @@ void PureVirus::LoadADNInformation()
 	}
 }
 
-void PureVirus::ReduceResistance(int)
+void PureVirus::ReduceResistance(int medicine_resistance)
 {
+	m_resistance -= medicine_resistance;
+	if (m_resistance <= 0)
+	{
+		this->DoDie();
+	}
+	else
+	{
+		this->DoClone();
+	}
 }
 
 void PureVirus::DoBorn()
 {
 }
 
-PureVirus PureVirus::DoClone()
+void PureVirus::DoClone()
 {
-	return PureVirus();
 }
 
 void PureVirus::DoDie()
 {
 }
 
-void PureVirus::InitResistance()
+void PureVirus::InitResistance(int)
 {
 }
 
