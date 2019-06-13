@@ -15,6 +15,5 @@ public:
 	void SetY(int);
 	int GetY();
 	float Distance(MyPoint p);
-	~MyPoint();
 };
 
