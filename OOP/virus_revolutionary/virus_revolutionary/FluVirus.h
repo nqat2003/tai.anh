@@ -7,10 +7,9 @@ private:
 public:
 	FluVirus();
 	~FluVirus();
-	void LoadADNInformation();
 	void DoBorn();
-	PureVirus DoClone();
+	FluVirus DoClone(FluVirus);
 	void DoDie();
-	void InitResistance();
+	void InitResistance(int i);
 };
 
