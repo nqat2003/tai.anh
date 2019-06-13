@@ -11,6 +11,6 @@ public:
 	void DoBorn();
 	void DoClone();
 	void DoDie();
-	void InitResistance(int); 
+	void InitResistance(); 
 };
 

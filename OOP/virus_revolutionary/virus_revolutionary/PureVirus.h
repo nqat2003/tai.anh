@@ -14,7 +14,7 @@ public:
 	virtual void DoBorn() = 0;
 	virtual void DoClone() = 0;
 	virtual void DoDie() = 0;
-	virtual void InitResistance(int) = 0;
+	virtual void InitResistance() = 0;
 	//void SetDNA(char*);
 	//char* GetDNA();
 	//void SetResistance(int);

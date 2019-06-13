@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "FluVirus.h"
+#include "DengueVirus.h"
 #include "iostream"
 #include <time.h>
 
@@ -12,7 +13,7 @@ void main()
 {
 	srand(time(NULL));
 	FluVirus *a = new FluVirus();
-
+	DengueVirus *b = new DengueVirus();
 	//cout << "DNA = " << a->GetDNA();
 	system("pause");
 }

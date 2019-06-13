@@ -67,7 +67,7 @@ void PureVirus::DoDie()
 {
 }
 
-void PureVirus::InitResistance(int)
+void PureVirus::InitResistance()
 {
 }
 
