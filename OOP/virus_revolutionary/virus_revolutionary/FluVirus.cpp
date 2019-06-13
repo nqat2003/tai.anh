@@ -10,6 +10,12 @@ using namespace std;
 FluVirus::FluVirus()
 {
 	DoBorn();
+	InitResistance(m_Color);
+}
+
+FluVirus::FluVirus(char * dna, int resistance, int color) : PureVirus(dna, resistance)
+{
+	m_Color = color;
 }
 
 
@@ -21,17 +27,17 @@ FluVirus::~FluVirus()
 void FluVirus::DoBorn()
 {
 	m_Color = rand() % 2 + 1;
-	InitResistance(m_Color);
 	LoadADNInformation();
 }
 
-FluVirus FluVirus::DoClone(FluVirus fv)
+void FluVirus::DoClone()
 {
-	return FluVirus();
+	FluVirus(m_dna, m_resistance, m_Color);
 }
 
 void FluVirus::DoDie()
 {
+	delete this;
 }
 
 void FluVirus::InitResistance(int i)
