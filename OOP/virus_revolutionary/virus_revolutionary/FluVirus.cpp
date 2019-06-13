@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "FluVirus.h"
+#include "Patient.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <time.h>
+
 
 using namespace std;
 
@@ -32,12 +33,12 @@ void FluVirus::DoBorn()
 
 void FluVirus::DoClone()
 {
-	FluVirus(m_dna, m_resistance, m_Color);
+	Patient::m_virusList.push_back(new FluVirus(m_dna, m_resistance, m_Color));
 }
 
 void FluVirus::DoDie()
 {
-	delete this;
+	Patient::m_virusList.remove(this);
 }
 
 void FluVirus::InitResistance()

@@ -14,7 +14,7 @@ void main()
 {
 	srand(time(NULL));
 	Patient a = Patient();
-	cout << a.m_resistance;
+	a.TakeMedicine(20);
 	system("pause");
 }
 
