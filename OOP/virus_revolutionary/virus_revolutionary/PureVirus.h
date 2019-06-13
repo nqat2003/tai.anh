@@ -18,6 +18,6 @@ public:
 	//void SetDNA(char*);
 	//char* GetDNA();
 	//void SetResistance(int);
-	//int GetResistance();
+	int GetResistance();
 };
 
