@@ -1,7 +1,7 @@
 #pragma once
 class PureVirus
 {
-private:
+protected:
 	char *m_dna;
 	int m_resistance;
 public:
@@ -14,7 +14,9 @@ public:
 	virtual PureVirus DoClone();
 	virtual void DoDie();
 	virtual void InitResistance();
-	void setDNA(char*);
-
+	//void SetDNA(char*);
+	//char* GetDNA();
+	//void SetResistance(int);
+	//int GetResistance();
 };
 
