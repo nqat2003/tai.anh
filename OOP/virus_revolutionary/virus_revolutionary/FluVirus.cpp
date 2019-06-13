@@ -33,12 +33,12 @@ void FluVirus::DoBorn()
 
 void FluVirus::DoClone()
 {
-	//Patient::m_virusList.push_back(new FluVirus(m_dna, m_resistance, m_Color));
+	Patient::m_virusList.push_front(new FluVirus(m_dna, m_resistance, m_Color));
 }
 
 void FluVirus::DoDie()
 {
-	//Patient::m_virusList.remove(this);
+	//delete this;
 }
 
 void FluVirus::InitResistance()
