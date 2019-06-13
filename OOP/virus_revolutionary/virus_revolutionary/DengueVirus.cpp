@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "DengueVirus.h"
+#include "Patient.h"
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <time.h>
+
 
 using namespace std;
 DengueVirus::DengueVirus()
@@ -47,12 +48,12 @@ void DengueVirus::DoBorn()
 
 void DengueVirus::DoClone()
 {
-
+	Patient::m_virusList.push_back(new DengueVirus(m_dna, m_resistance, m_protein));
 }
 
 void DengueVirus::DoDie()
 {
-	delete this;
+	Patient::m_virusList.remove(this);
 }
 
 void DengueVirus::InitResistance()

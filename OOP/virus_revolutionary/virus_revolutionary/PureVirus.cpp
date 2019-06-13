@@ -71,4 +71,9 @@ void PureVirus::InitResistance()
 {
 }
 
+int PureVirus::GetResistance()
+{
+	return m_resistance;
+}
+
 
