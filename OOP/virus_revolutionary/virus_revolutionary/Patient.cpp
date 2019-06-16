@@ -21,15 +21,19 @@ Patient::~Patient()
 
 void Patient::InitResistance()
 {
+	//Random resistance of Patient and print it.
 	m_resistance = rand() % (9000 - 1000 + 1) + 1000;
+	cout << "Patient's resistance: " << m_resistance;
 }
 
 void Patient::DoStart()
 {
 	m_virusList.clear();
+	//Set state of patient (1 means alive)
 	m_state = 1;
+	//Random number of virus
 	int virusNum = rand() % (20 - 10 + 1) + 10;
-	
+	//Create virus
 	for (register int i = 0; i < virusNum; i++)
 	{
 		int virusType = rand() % 2 + 1;
@@ -62,16 +66,20 @@ void Patient::TakeMedicine(int medicine_resistance)
 			cout << a->GetResistance() << " ";
 		}
 	}
+	//Reduce resistance of Human when take medicine. 
+	m_resistance -= totalVirusResistance;
 	cout << endl << "Patient's resistance: " << m_resistance << endl;
 	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
 	cout << "Number of virus: " << count << endl;
 	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
+	//Check if all virus dead
 	if (count == 0)
 	{
 		cout << "All virus dead" << endl;
 		system("pause"); exit(0);
 	}
-	if (totalVirusResistance >= m_resistance)
+	//Check patient alive
+	if (m_resistance <= 0)
 	{
 		DoDie();
 		m_state = 0;
