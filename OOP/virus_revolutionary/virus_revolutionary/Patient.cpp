@@ -53,7 +53,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
 	int count = 0;
-	cout << "List resistance of living virus: ";
+	cout << "List resistance of living virus: " << endl;
 	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
 	{
 		PureVirus *a = *it;
@@ -71,7 +71,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 	}
 	//Reduce resistance of Human when take medicine. 
 	m_resistance -= totalVirusResistance;
-	cout << endl << "Patient's resistance: " << m_resistance << endl;
+	cout << endl << "Patient's resistance after take medicine: " << m_resistance << endl;
 	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
 	cout << "Number of virus: " << count << endl;
 	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
