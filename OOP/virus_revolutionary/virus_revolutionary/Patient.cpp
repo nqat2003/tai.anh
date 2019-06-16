@@ -23,7 +23,7 @@ void Patient::InitResistance()
 {
 	//Random resistance of Patient and print it.
 	m_resistance = rand() % (9000 - 1000 + 1) + 1000;
-	cout << "Patient's resistance: " << m_resistance;
+	cout << "Patient's resistance: " << m_resistance << endl;
 }
 
 void Patient::DoStart()
@@ -31,8 +31,9 @@ void Patient::DoStart()
 	m_virusList.clear();
 	//Set state of patient (1 means alive)
 	m_state = 1;
-	//Random number of virus
+	//Random number of virus and print it
 	int virusNum = rand() % (20 - 10 + 1) + 10;
+	cout << "Number of Virus: " << virusNum << endl;
 	//Create virus
 	for (register int i = 0; i < virusNum; i++)
 	{
@@ -46,11 +47,13 @@ void Patient::DoStart()
 			m_virusList.push_back(new DengueVirus());
 		}
 	}
+	
 }
 void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
 	int count = 0;
+	cout << "List resistance of living virus: ";
 	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
 	{
 		PureVirus *a = *it;
@@ -72,6 +75,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
 	cout << "Number of virus: " << count << endl;
 	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
+	cout << "==========================" << endl;
 	//Check if all virus dead
 	if (count == 0)
 	{

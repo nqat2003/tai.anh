@@ -22,7 +22,7 @@ void main()
 		if (t == 1)
 		{
 			int min = 1;
-			int max = 60;
+			int max = 30;
 			int medicine_resistance = min + (rand() % (int)(max - min + 1));
 			p.TakeMedicine(medicine_resistance);
 
