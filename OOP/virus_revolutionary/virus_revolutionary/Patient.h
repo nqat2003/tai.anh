@@ -8,7 +8,7 @@ private:
 	int m_resistance;
 	int m_state;
 public:
-    static list<PureVirus*> m_virusList;
+    list<PureVirus*> m_virusList;
 public:
 	Patient();
 	~Patient();
