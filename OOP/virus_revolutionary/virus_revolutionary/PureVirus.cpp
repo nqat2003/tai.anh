@@ -51,6 +51,21 @@ void PureVirus::ReduceResistance(int medicine_resistance)
 }
 
 
+void PureVirus::SetDNA(char *a)
+{
+	this->m_dna = a;
+}
+
+char * PureVirus::GetDNA()
+{
+	return m_dna;
+}
+
+void PureVirus::SetResistance(int res)
+{
+	m_resistance = res;
+}
+
 int PureVirus::GetResistance()
 {
 	return m_resistance;
