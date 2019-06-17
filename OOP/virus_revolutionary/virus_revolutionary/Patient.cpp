@@ -89,7 +89,7 @@ void Patient::TakeMedicine(int medicine_resistance)
 	{
 		DoDie();
 		m_state = 0;
-		cout << "You dead.";
+		cout << "Patient dead." << endl;
 		system("pause"); exit(0);
 	}
 }
