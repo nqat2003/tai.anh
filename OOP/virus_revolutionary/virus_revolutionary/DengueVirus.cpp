@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "DengueVirus.h"
-#include "Patient.h"
 #include <iostream>
 #include <fstream>
 #include <string>

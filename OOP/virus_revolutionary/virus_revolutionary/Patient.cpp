@@ -6,7 +6,6 @@
 #include  <list>
 using namespace std;
 
-list<PureVirus*> Patient::m_virusList = list<PureVirus*>();
 
 Patient::Patient()
 {
@@ -61,8 +60,11 @@ void Patient::TakeMedicine(int medicine_resistance)
 		if (a->GetResistance() <= 0)
 		{
 			it = m_virusList.erase(it);
+			a->DoDie();
 		}
 		else {
+			list<PureVirus*> temp = a->DoClone();
+			m_virusList.insert(m_virusList.begin(),temp.begin(),temp.end());
 			++it;
 			totalVirusResistance += a->GetResistance();
 			count++;
