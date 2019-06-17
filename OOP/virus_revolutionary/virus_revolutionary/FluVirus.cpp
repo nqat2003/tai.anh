@@ -31,9 +31,12 @@ void FluVirus::DoBorn()
 	LoadADNInformation();
 }
 
-void FluVirus::DoClone()
+list<PureVirus*> FluVirus::DoClone()
 {
-	Patient::m_virusList.push_front(new FluVirus(m_dna, m_resistance, m_Color));
+	PureVirus *clonevirus = new FluVirus(m_dna, m_resistance, m_Color);
+	list<PureVirus*> temp;
+	temp.push_back(a);
+	return temp;
 }
 
 void FluVirus::DoDie()

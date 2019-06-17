@@ -46,10 +46,13 @@ void DengueVirus::DoBorn()
 	
 }
 
-void DengueVirus::DoClone()
+list<PureVirus*> DengueVirus::DoClone()
 {
-	Patient::m_virusList.push_front(new DengueVirus(m_dna, m_resistance, m_protein));
-	Patient::m_virusList.push_front(new DengueVirus(m_dna, m_resistance, m_protein));
+	auto *clonevirus = new DengueVirus(m_dna, m_resistance, m_protein);
+	list<PureVirus*> temp;
+	temp.push_back(clonevirus);
+	temp.push_back(clonevirus);
+	return temp;
 }
 
 void DengueVirus::DoDie()

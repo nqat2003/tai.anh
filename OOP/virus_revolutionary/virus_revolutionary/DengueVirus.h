@@ -9,7 +9,7 @@ public:
 	DengueVirus(char*, int, char[]);
 	~DengueVirus();
 	void DoBorn();
-	void DoClone();
+	list<PureVirus*> DoClone();
 	void DoDie();
 	void InitResistance();
 };
