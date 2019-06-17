@@ -66,7 +66,6 @@ void Patient::TakeMedicine(int medicine_resistance)
 		}
 		else 
 		{
-			
 			++it;
 		}
 	}

@@ -7,6 +7,7 @@
 #include "Patient.h"
 #include "iostream"
 #include <time.h>
+#include <vld.h>
 
 using namespace std;
 
