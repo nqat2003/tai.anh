@@ -18,5 +18,6 @@ public:
 	void DoDie();
 	int GetRegistance();
 	int GetState();
+	int Display(int);
 };
 

@@ -32,12 +32,15 @@ void DengueVirus::DoBorn()
 	{
 	case 1:
 		strcpy_s(m_protein, "NS3");
+
 		break;
 	case 2:
 		strcpy_s(m_protein, "NS5");
+
 		break;
 	case 3:
 		strcpy_s(m_protein, "E");
+
 		break;
 	default:
 		break;
