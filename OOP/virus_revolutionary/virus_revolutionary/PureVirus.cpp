@@ -45,7 +45,7 @@ void PureVirus::LoadADNInformation()
 
 void PureVirus::ReduceResistance(int medicine_resistance)
 {
-	
+
 	m_resistance -= medicine_resistance;
 
 }
