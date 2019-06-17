@@ -9,7 +9,7 @@ public:
 	FluVirus(char*, int, int);
 	~FluVirus();
 	void DoBorn();
-	void DoClone();
+	list<PureVirus*> DoClone();
 	void DoDie();
 	void InitResistance(); 
 };
