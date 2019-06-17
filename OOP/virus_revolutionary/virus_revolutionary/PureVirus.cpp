@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <list>
 
 
 using namespace std;
@@ -49,21 +50,6 @@ void PureVirus::ReduceResistance(int medicine_resistance)
 
 }
 
-void PureVirus::DoBorn()
-{
-}
-
-void PureVirus::DoClone()
-{
-}
-
-void PureVirus::DoDie()
-{
-}
-
-void PureVirus::InitResistance()
-{
-}
 
 int PureVirus::GetResistance()
 {

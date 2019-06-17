@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "FluVirus.h"
-#include "Patient.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -35,7 +34,7 @@ list<PureVirus*> FluVirus::DoClone()
 {
 	PureVirus *clonevirus = new FluVirus(m_dna, m_resistance, m_Color);
 	list<PureVirus*> temp;
-	temp.push_back(a);
+	temp.push_back(clonevirus);
 	return temp;
 }
 
