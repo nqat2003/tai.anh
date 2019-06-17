@@ -48,11 +48,12 @@ void Patient::DoStart()
 	}
 	
 }
+
+
+
 void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
-	int count = 0;
-	cout << "List resistance of living virus: " << endl;
 	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
 	{
 		PureVirus *a = *it;
@@ -60,26 +61,21 @@ void Patient::TakeMedicine(int medicine_resistance)
 		if (a->GetResistance() <= 0)
 		{
 			it = m_virusList.erase(it);
-			a->DoDie();
+			a = nullptr;
+			//a->DoDie();
 		}
-		else {
-			list<PureVirus*> temp = a->DoClone();
-			m_virusList.insert(m_virusList.begin(),temp.begin(),temp.end());
+		else 
+		{
+			
 			++it;
-			totalVirusResistance += a->GetResistance();
-			count++;
-			cout << a->GetResistance() << " ";
 		}
 	}
+	totalVirusResistance = Display(medicine_resistance);
 	//Reduce resistance of Human when take medicine. 
 	m_resistance -= totalVirusResistance;
-	cout << endl << "Patient's resistance after take medicine: " << m_resistance << endl;
-	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
-	cout << "Number of virus: " << count << endl;
-	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
-	cout << "==========================" << endl;
+
 	//Check if all virus dead
-	if (count == 0)
+	if (m_virusList.size() == 0)
 	{
 		cout << "All virus dead" << endl;
 		system("pause"); exit(0);
@@ -92,6 +88,38 @@ void Patient::TakeMedicine(int medicine_resistance)
 		cout << "Patient dead." << endl;
 		system("pause"); exit(0);
 	}
+}
+
+int Patient::Display(int medicine_resistance)
+{
+	int totalVirusResistance = 0;
+
+	cout << "List resistance of living virus: " << endl;
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
+	{
+		PureVirus *a = *it;
+		list<PureVirus*> temp = a->DoClone();
+		m_virusList.insert(m_virusList.begin(), temp.begin(), temp.end());
+		++it;
+
+	}
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
+	{
+		PureVirus *a = *it;
+		cout << a->GetResistance() << " ";
+		totalVirusResistance += a->GetResistance();
+		++it;
+
+	}
+	//Reduce resistance of Human when take medicine. 
+	m_resistance -= totalVirusResistance;
+	cout << endl << "Patient's resistance after take medicine: " << m_resistance << endl;
+	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
+	cout << "Number of virus:  " << m_virusList.size() << endl;
+	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
+	cout << "=============================" << endl;
+	//Check if all virus dead
+	return totalVirusResistance;
 }
 
 
@@ -110,3 +138,4 @@ int Patient::GetState()
 {
 	return m_state;
 }
+
