@@ -46,14 +46,7 @@ void PureVirus::ReduceResistance(int medicine_resistance)
 {
 	
 	m_resistance -= medicine_resistance;
-	if (m_resistance <= 0)
-	{
-		DoDie();
-	}
-	else
-	{
-		DoClone();
-	}
+
 }
 
 void PureVirus::DoBorn()
