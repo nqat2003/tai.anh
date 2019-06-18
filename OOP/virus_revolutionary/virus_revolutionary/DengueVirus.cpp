@@ -11,6 +11,7 @@ DengueVirus::DengueVirus()
 	
 	DoBorn();
 	InitResistance();
+	cout << "Type: " << m_protein << "\t" << "Resistance: " << m_resistance << endl;
 }
 
 DengueVirus::DengueVirus(char * dna, int resistance, char abc[]) : PureVirus(dna,resistance)
