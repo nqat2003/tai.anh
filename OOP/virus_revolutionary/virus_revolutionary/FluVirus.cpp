@@ -21,6 +21,7 @@ FluVirus::FluVirus(char * dna, int resistance, int color) : PureVirus(dna, resis
 
 FluVirus::~FluVirus()
 {
+	DoDie();
 }
 
 
@@ -40,7 +41,7 @@ list<PureVirus*> FluVirus::DoClone()
 
 void FluVirus::DoDie()
 {
-	//delete this;
+	
 }
 
 void FluVirus::InitResistance()
