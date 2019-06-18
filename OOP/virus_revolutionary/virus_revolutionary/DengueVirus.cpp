@@ -8,6 +8,7 @@
 using namespace std;
 DengueVirus::DengueVirus()
 {
+	
 	DoBorn();
 	InitResistance();
 }
@@ -20,7 +21,7 @@ DengueVirus::DengueVirus(char * dna, int resistance, char abc[]) : PureVirus(dna
 
 DengueVirus::~DengueVirus()
 {
-	
+	DoDie();
 	
 }
 
@@ -32,15 +33,12 @@ void DengueVirus::DoBorn()
 	{
 	case 1:
 		strcpy_s(m_protein, "NS3");
-
 		break;
 	case 2:
 		strcpy_s(m_protein, "NS5");
-
 		break;
 	case 3:
 		strcpy_s(m_protein, "E");
-
 		break;
 	default:
 		break;
@@ -51,15 +49,16 @@ void DengueVirus::DoBorn()
 list<PureVirus*> DengueVirus::DoClone()
 {
 	auto *clonevirus = new DengueVirus(m_dna, m_resistance, m_protein);
+	auto *clonevirus2 = new DengueVirus(m_dna, m_resistance, m_protein);
 	list<PureVirus*> temp;
 	temp.push_back(clonevirus);
-	temp.push_back(clonevirus);
+	temp.push_back(clonevirus2);
 	return temp;
 }
 
 void DengueVirus::DoDie()
 {
-	//delete this;
+	
 }
 
 void DengueVirus::InitResistance()

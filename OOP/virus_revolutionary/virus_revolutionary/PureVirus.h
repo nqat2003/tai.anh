@@ -4,12 +4,13 @@ using namespace std;
 class PureVirus
 {
 protected:
-	char *m_dna;
+	
 	int m_resistance;
 public:
+	char *m_dna;
 	PureVirus();
 	PureVirus(char*, int);
-	~PureVirus();
+	virtual ~PureVirus();
 	PureVirus(PureVirus *virus);
 	void LoadADNInformation();
 	void ReduceResistance(int);
