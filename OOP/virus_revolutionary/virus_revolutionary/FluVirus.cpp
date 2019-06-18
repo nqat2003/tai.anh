@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <iomanip>
 
 using namespace std;
 
@@ -11,8 +11,11 @@ FluVirus::FluVirus()
 {
 	DoBorn();
 	InitResistance();
-	string type = m_Color == 1 ? "red" : "blue";
-	cout << "Type: " << type << "\t" << "Resistance: " << m_resistance << endl;
+	string type = m_Color == 1 ? "Red" : "Blue";
+	cout << left << setw(15) << "Flu Virus " 
+		<< left << setw(3) << ":" 
+		<< left << setw(10) << type 
+		<< "Resistance: " << m_resistance <<  endl;
 }
 
 FluVirus::FluVirus(char * dna, int resistance, int color) : PureVirus(dna, resistance)

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <iomanip>
 
 
 using namespace std;
@@ -11,7 +12,10 @@ DengueVirus::DengueVirus()
 	
 	DoBorn();
 	InitResistance();
-	cout << "Type: " << m_protein << "\t" << "Resistance: " << m_resistance << endl;
+	cout << left << setw(15) << "Dengue Virus" 
+		<< left << setw(3) << ":" 
+		<< left << setw(10) << m_protein 
+		<< "Resistance: " << m_resistance << endl;
 }
 
 DengueVirus::DengueVirus(char * dna, int resistance, char abc[]) : PureVirus(dna,resistance)
