@@ -16,6 +16,11 @@ Patient::Patient()
 
 Patient::~Patient()
 {
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	{
+		delete (*it);
+	}
+	m_virusList.clear();
 }
 
 void Patient::InitResistance()

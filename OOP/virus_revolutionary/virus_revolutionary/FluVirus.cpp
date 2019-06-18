@@ -11,6 +11,8 @@ FluVirus::FluVirus()
 {
 	DoBorn();
 	InitResistance();
+	string type = m_Color == 1 ? "red" : "blue";
+	cout << "Type: " << type << "\t" << "Resistance: " << m_resistance << endl;
 }
 
 FluVirus::FluVirus(char * dna, int resistance, int color) : PureVirus(dna, resistance)
