@@ -2,21 +2,25 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include <iostream>
+#include <fstream>
+#include <ui/CocosGUI.h>
+using namespace std;
+using namespace cocos2d;
 class ResourceManager
 {
 private:
 	ResourceManager* s_instance;
-	std::string m_dataFolderPath;
-	std::map<char, cocos2d::Sprite*> m_sprites;
-	std::map<char, cocos2d::ui::Button*> m_buttons;
-	std::map<char, cocos2d::Label*> m_labels;
+	string m_dataFolderPath;
+	map<char, Sprite*> m_sprites;
+	map<char, ui::Button*> m_buttons;
+	map<char, Label*> m_labels;
 public:
 	ResourceManager();
 	~ResourceManager();
 	ResourceManager GetInstance();
-	void Init(const std::string);
-	void Load(std::string);
-	cocos2d::Sprite* GetSpriteById(char);
-	cocos2d::ui::Button* GetButtonById(char);
-	cocos2d::Label* GetLabelById(char);
+	void Init(const string);
+	void Load(string);
+	Sprite* GetSpriteById(char);
+	ui::Button* GetButtonById(char);
+	Label* GetLabelById(char);
 };

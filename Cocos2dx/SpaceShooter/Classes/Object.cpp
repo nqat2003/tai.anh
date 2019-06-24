@@ -1,9 +1,9 @@
 #include "Object.h"
 
-Object::Object()
+Objectt::Objectt()
 {
 }
 
-Object::~Object()
+Objectt::~Objectt()
 {
 }

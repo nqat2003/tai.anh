@@ -4,15 +4,17 @@
 #include "Rock.h"
 #include <vector>
 #include <iostream>
-class SpaceShooter : public Object
+using namespace std;
+using namespace cocos2d;
+class SpaceShooter : public Objectt
 {
 private:
-	std::list<Object*> m_bullets;
+	list<Object*> m_bullets;
 public:
-	SpaceShooter(cocos2d::Scene*);
+	SpaceShooter(Scene*);
 	~SpaceShooter();
 	void Init();
 	void Update(float);
 	void Shoot();
-	void Collision(std::vector<Rock*>);
+	void Collision(vector<Rock*>);
 };

@@ -1,12 +1,14 @@
 #pragma once
 #include "cocos2d.h"
-class Object
+using namespace std;
+using namespace cocos2d;
+class Objectt
 {
 private:
-	cocos2d::Sprite m_sprite;
+	Sprite m_sprite;
 public:
-	Object();
-	~Object();
+	Objectt();
+	~Objectt();
 	virtual void Init() = 0;
 	virtual void Update(float) = 0;
 };
