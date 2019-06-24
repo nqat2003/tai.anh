@@ -1,5 +1,7 @@
 #pragma once
 #include "cocos2d.h"
+#include "Rock.h"
+#include "SpaceShooter.h"
 #include <iostream>
 #include <vector>
 class GamePlayScene : public cocos2d::Scene
