@@ -1,13 +1,13 @@
 #include "LoadingScene.h"
 
-cocos2d::Scene * LoadingScene::createScene()
+Scene * LoadingScene::createScene()
 {
-	return nullptr;
+	return LoadingScene::create();
 }
 
 bool LoadingScene::init()
 {
-	return false;
+	return true;
 }
 
 void LoadingScene::update(float)

@@ -9,18 +9,18 @@ using namespace cocos2d;
 class ResourceManager
 {
 private:
-	ResourceManager* s_instance;
+	static ResourceManager* s_instance;
 	string m_dataFolderPath;
-	map<char, Sprite*> m_sprites;
-	map<char, ui::Button*> m_buttons;
-	map<char, Label*> m_labels;
+	map<int, Sprite*> m_sprites;
+	map<int, ui::Button*> m_buttons;
+	map<int, Label*> m_labels;
 public:
 	ResourceManager();
 	~ResourceManager();
-	ResourceManager GetInstance();
+	static ResourceManager* GetInstance();
 	void Init(const string);
 	void Load(string);
-	Sprite* GetSpriteById(char);
-	ui::Button* GetButtonById(char);
-	Label* GetLabelById(char);
+	Sprite* GetSpriteById(int);
+	ui::Button* GetButtonById(int);
+	Label* GetLabelById(int);
 };

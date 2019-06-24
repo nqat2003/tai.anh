@@ -32,13 +32,10 @@ int main()
 		temp.insert(pair<char, string>(index1, index2));
 	}
 	f.close();
-	map<char, string>::iterator itr;
-	cout << "\tKEY\tELEMENT\n";
-	for (itr = temp.begin(); itr != temp.end(); ++itr) {
-		cout << '\t' << itr->first
-			<< '\t' << itr->second << '\n';
-	}
-
+	//=============================================================
+	char a = 2;
+	cout << temp.at('2');
+	//=============================================================
 	cout << endl;
 	system("pause");
     return 0;
