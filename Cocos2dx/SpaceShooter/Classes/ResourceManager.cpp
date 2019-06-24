@@ -21,7 +21,7 @@ ResourceManager* ResourceManager::GetInstance()
 void ResourceManager::Init(const string path)
 {
 	m_dataFolderPath = path;
-	Load("Data.bin");
+	Load("res/Data.bin");
 }
 
 void ResourceManager::Load(string fileName)
@@ -32,7 +32,6 @@ void ResourceManager::Load(string fileName)
 	int i;
 	f >> off;
 	f >> i;
-	cout << i << endl;
 	for (register int s = 0; s < i; s++)
 	{
 		int index;
@@ -41,7 +40,7 @@ void ResourceManager::Load(string fileName)
 		f >> index;
 		f >> off;
 		f >> pathSprite;
-		pathSprite.replace(pathSprite.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
+		pathSprite.replace(0, 2, m_dataFolderPath);
 		m_sprites.insert(pair<int,Sprite*>(index, Sprite::create(pathSprite)));
 	}
 	f >> off;
@@ -59,7 +58,8 @@ void ResourceManager::Load(string fileName)
 		f >> pathButtonPressed;
 		pathButtonNormal.replace(pathButtonNormal.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
 		pathButtonPressed.replace(pathButtonPressed.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
-		m_buttons.insert(pair<int, ui::Button*>(index, ui::Button::create(pathButtonNormal, pathButtonPressed)));
+		ui::Button *bt = ui::Button::create(pathButtonNormal, pathButtonPressed);
+		m_buttons.insert(pair<int, ui::Button*>(index, bt));
 	}
 	f >> off;
 	f >> i;
@@ -72,14 +72,16 @@ void ResourceManager::Load(string fileName)
 		f >> off;
 		f >> pathFont;
 		pathFont.replace(pathFont.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
-		m_labels.insert(pair<int, Label*>(index, Label::createWithTTF(pathFont, "")));
+		Label *lb = Label::createWithTTF(pathFont, "");
+		m_labels.insert(pair<int, Label*>(index, lb));
 	}
 	f.close();
 }
 
 Sprite * ResourceManager::GetSpriteById(int id)
 {
-	return m_sprites.at(id);
+	m_sprites[id]->retain();
+	return m_sprites[id];
 }
 
 ui::Button * ResourceManager::GetButtonById(int id)

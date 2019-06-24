@@ -14,11 +14,11 @@ int main()
 	
 	fstream f;
 	f.open("F:/taianh/Cocos2dx/SpaceShooter/Resources/res/Data.bin");
-	char index1;
+	int index1;
 	string index2;
 	string off;
 	int i;
-	map<char, string> temp;
+	map<int, string> temp;
 	f >> off;
 	f >> i;
 	cout << i << endl;
@@ -29,12 +29,12 @@ int main()
 		f >> off;
 		f >> index2;
 		index2.replace(index2.find("%s"), sizeof("%s") - 1, "res");
-		temp.insert(pair<char, string>(index1, index2));
+		temp.insert(pair<int, string>(index1, index2));
 	}
 	f.close();
 	//=============================================================
-	char a = 2;
-	cout << temp.at('2');
+	int a = 0;
+	cout << "a|"<< temp[0] << "|a";
 	//=============================================================
 	cout << endl;
 	system("pause");

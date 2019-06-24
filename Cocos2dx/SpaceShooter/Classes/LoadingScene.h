@@ -1,5 +1,6 @@
 #pragma once
 #include "cocos2d.h"
+#include "ResourceManager.h"
 using namespace std;
 using namespace cocos2d;
 class LoadingScene : public cocos2d::Scene
