@@ -22,33 +22,54 @@ bool GamePlayScene::init()
 	{
 		m_rocks.push_back(new Rock(this));
 	}
+	//-------------------------------------------------------------
 	auto touchListener = EventListenerTouchOneByOne::create();
 	touchListener->onTouchBegan = CC_CALLBACK_2(GamePlayScene::onTouchBegan, this);
 	touchListener->onTouchEnded = CC_CALLBACK_2(GamePlayScene::onTouchEnded, this);
 	touchListener->onTouchMoved = CC_CALLBACK_2(GamePlayScene::onTouchMoved, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-	//scheduleUpdate();
+	//-------------------------------------------------------------
+	count = 0;
+	scheduleUpdate();
+	//-------------------------------------------------------------
 	return true;
 }
 
 void GamePlayScene::update(float dt)
 {
-	Size vs = Director::getInstance()->getVisibleSize();
-	Vec2 or = Director::getInstance()->getVisibleOrigin();
-	for (register int i = 0; i < m_rocks.size(); i++)
+	count++;
+	if (count == 30)
 	{
-		generateRock(m_rocks[i]);
-		m_rocks[i]->Update(dt);
+		generateRock();
+		log("udcome");
+		for (register int i = 0; i < m_rocks.size(); i++)
+		{
+			log("udcome1");
+			/*if (m_rocks[i]->getSprite()->isVisible())
+			{
+				log("udcome2");*/
+				m_rocks[i]->Update(dt);
+			//}
+		}
+		count = 0;
 	}
+	
 	
 }
 
-void GamePlayScene::generateRock(Rock* rock)
+void GamePlayScene::generateRock()
 {
 	Size vs = Director::getInstance()->getVisibleSize();
 	int maxWidth = vs.width;
-	rock->getSprite()->setVisible(true);
-	rock->getSprite()->setPosition(Vec2(random(10, maxWidth), vs.height + 20));
+	for (register int i = 0; i < m_rocks.size(); i++)
+	{
+		if (m_rocks[i]->getSprite()->isVisible())
+		{
+			m_rocks[i]->getSprite()->setVisible(true);
+			m_rocks[i]->getSprite()->setPosition(Vec2(random(0,maxWidth), vs.height  / 2));
+			break;
+		}
+	}
 }
 
 bool GamePlayScene::onTouchBegan(cocos2d::Touch * t, cocos2d::Event * e)

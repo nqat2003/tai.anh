@@ -18,13 +18,10 @@ void Rock::Init()
 
 void Rock::Update(float dt)
 {
-	Size vs = Director::getInstance()->getVisibleSize();
-	auto mv = MoveTo::create(1.5, Vec2(vs.width / 2, 0));
-	auto sq = Sequence::create(mv, nullptr);
-	m_sprite->runAction(sq);
-	log("Dropped");
-	if (m_sprite->getPositionY() < 0)
+	log("move");
+	this->m_sprite->setPositionY(m_sprite->getPositionY() - 5);
+	if (this->m_sprite->getPositionY() < 0)
 	{
-		m_sprite->setVisible(false);
+		this->m_sprite->setVisible(false);
 	}
 }
