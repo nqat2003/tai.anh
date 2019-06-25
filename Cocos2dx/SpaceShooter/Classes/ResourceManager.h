@@ -23,4 +23,5 @@ public:
 	Sprite* GetSpriteById(int);
 	ui::Button* GetButtonById(int);
 	Label* GetLabelById(int);
+	Sprite * DuplicateSprite(Sprite*);
 };

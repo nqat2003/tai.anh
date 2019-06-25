@@ -2,14 +2,16 @@
 #include "cocos2d.h"
 #include "Object.h"
 #include "Rock.h"
+#include "Bullet.h"
 #include <vector>
 #include <iostream>
+#define BULLET_N 20
 using namespace std;
 using namespace cocos2d;
 class SpaceShooter : public Objectt
 {
 private:
-	list<Object*> m_bullets;
+	vector<Object*> m_bullets;
 public:
 	SpaceShooter(Scene*);
 	~SpaceShooter();

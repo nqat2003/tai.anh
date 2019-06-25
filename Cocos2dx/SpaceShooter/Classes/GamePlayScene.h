@@ -18,6 +18,7 @@ public:
 	virtual bool init();
 	void update(float);
 	CREATE_FUNC(GamePlayScene);
+	void generateRock(Rock*);
 	bool onTouchBegan(Touch*, Event*);
 	bool onTouchEnded(Touch*, Event*);
 	void onTouchMoved(Touch*, Event*);
