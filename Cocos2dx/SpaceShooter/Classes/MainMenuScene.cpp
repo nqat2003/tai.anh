@@ -2,10 +2,10 @@
 
 cocos2d::Scene * MainMenuScene::createScene()
 {
-	return nullptr;
+	return MainMenuScene::create();
 }
 
 bool MainMenuScene::Init()
 {
-	return false;
+	return true;
 }

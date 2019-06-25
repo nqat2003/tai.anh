@@ -5,6 +5,6 @@ using namespace cocos2d;
 class MainMenuScene : public cocos2d::Scene
 {
 public:
-	Scene* createScene();
+	static Scene* createScene();
 	virtual bool Init();
 };

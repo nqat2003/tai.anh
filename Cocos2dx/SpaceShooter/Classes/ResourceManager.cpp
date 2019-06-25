@@ -72,7 +72,7 @@ void ResourceManager::Load(string fileName)
 		f >> off;
 		f >> pathFont;
 		pathFont.replace(pathFont.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
-		Label *lb = Label::createWithTTF(pathFont, "");
+		Label *lb = Label::createWithTTF("", pathFont, 30);
 		m_labels.insert(pair<int, Label*>(index, lb));
 	}
 	f.close();
