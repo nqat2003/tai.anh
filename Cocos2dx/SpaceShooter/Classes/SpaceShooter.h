@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Rock.h"
 #include "Bullet.h"
+#include "GameOverScene.h"
 #include <vector>
 #include <iostream>
 #define BULLET_N 20

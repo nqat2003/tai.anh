@@ -37,7 +37,7 @@ bool GamePlayScene::init()
 
 void GamePlayScene::update(float dt)
 {
-	if (count == 20)
+	if (count == 10)
 	{
 		generateRock();
 		count = 0;
@@ -53,6 +53,7 @@ void GamePlayScene::update(float dt)
 		}
 	}
 	m_spaceShip->Update(dt);
+	m_spaceShip->Collision(m_rocks);
 }
 
 void GamePlayScene::generateRock()

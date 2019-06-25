@@ -62,10 +62,17 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 	{
 		for (register int j = 0; j < rocks.size(); j++)
 		{
-			/*if (m_bullets[i]->getSprite()->getBoundingBox()->intersectsRect(rocks[j]->getSprite()->getBoundingBox()))
+			Rect bullet = m_bullets[i]->getSprite()->getBoundingBox();
+			Rect rock = rocks[j]->getSprite()->getBoundingBox();
+			if (bullet.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
 			{
-				log("Conllision");
-			}*/
+				rocks[j]->getSprite()->setVisible(false);
+			}
+			Rect plane = m_sprite->getBoundingBox();
+			if (plane.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
+			{
+				Director::getInstance()->replaceScene(TransitionFade::create(1, GameOverScene::createScene(), Color3B(0, 0, 0)));
+			}
 		}
 	}
 }
