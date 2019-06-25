@@ -4,7 +4,7 @@ PATH: %s/Sprites/background.png
 ID: 1
 PATH: %s/Sprites/logo.png
 ID: 2
-PATH: %s/Sprites/bullet.png
+PATH: %s/Sprites/bullet_red.png
 ID: 3
 PATH: %s/Sprites/aestroid_dark.png
 ID: 4

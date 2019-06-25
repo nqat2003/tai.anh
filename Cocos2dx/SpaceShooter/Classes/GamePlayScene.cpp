@@ -37,24 +37,22 @@ bool GamePlayScene::init()
 
 void GamePlayScene::update(float dt)
 {
-	count++;
-	if (count == 30)
+	if (count == 20)
 	{
 		generateRock();
-		log("udcome");
-		for (register int i = 0; i < m_rocks.size(); i++)
-		{
-			log("udcome1");
-			/*if (m_rocks[i]->getSprite()->isVisible())
-			{
-				log("udcome2");*/
-				m_rocks[i]->Update(dt);
-			//}
-		}
 		count = 0;
 	}
-	
-	
+	else {
+		count++;
+	}
+	for (register int i = 0; i < m_rocks.size(); i++)
+	{
+		if (m_rocks[i]->getSprite()->isVisible())
+		{
+			m_rocks[i]->Update(dt);
+		}
+	}
+	m_spaceShip->Update(dt);
 }
 
 void GamePlayScene::generateRock()
@@ -63,10 +61,12 @@ void GamePlayScene::generateRock()
 	int maxWidth = vs.width;
 	for (register int i = 0; i < m_rocks.size(); i++)
 	{
-		if (m_rocks[i]->getSprite()->isVisible())
+		if (!m_rocks[i]->getSprite()->isVisible())
 		{
 			m_rocks[i]->getSprite()->setVisible(true);
-			m_rocks[i]->getSprite()->setPosition(Vec2(random(0,maxWidth), vs.height  / 2));
+			m_rocks[i]->getSprite()->setPosition(Vec2(random(0, maxWidth), vs.height + 50));
+			m_rocks[i]->getSprite()->setScale(random(1, 2)*(3/2));
+			m_rocks[i]->getSprite()->setRotation(random(0, 90));
 			break;
 		}
 	}

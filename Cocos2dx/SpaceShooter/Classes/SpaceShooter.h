@@ -11,7 +11,8 @@ using namespace cocos2d;
 class SpaceShooter : public Objectt
 {
 private:
-	vector<Object*> m_bullets;
+	vector<Objectt*> m_bullets;
+	int count;
 public:
 	SpaceShooter(Scene*);
 	~SpaceShooter();

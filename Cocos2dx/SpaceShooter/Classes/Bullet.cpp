@@ -4,7 +4,7 @@ Bullet::Bullet(cocos2d::Scene * scene)
 {
 	Init();
 	m_sprite->removeFromParent();
-	scene->addChild(m_sprite, 1);
+	scene->addChild(m_sprite, 0);
 }
 
 Bullet::~Bullet()
@@ -13,16 +13,14 @@ Bullet::~Bullet()
 
 void Bullet::Init()
 {
-	m_sprite = ResourceManager::GetInstance()->GetSpriteById(2);
+	m_sprite = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteById(2));
 
 }
 
 void Bullet::Update(float dt)
 {
 	Size vs = Director::getInstance()->getVisibleSize();
-	auto mv = MoveBy::create(1.5, Vec2(m_sprite->getPositionX(), vs.height + 100));
-	auto sq = Sequence::create(mv, nullptr);
-	m_sprite->runAction(sq);
+	this->m_sprite->setPositionY(m_sprite->getPositionY() + 10);
 	if (m_sprite->getPositionY() > vs.height)
 	{
 		m_sprite->setVisible(false);

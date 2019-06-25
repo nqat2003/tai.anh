@@ -18,7 +18,6 @@ void Rock::Init()
 
 void Rock::Update(float dt)
 {
-	log("move");
 	this->m_sprite->setPositionY(m_sprite->getPositionY() - 5);
 	if (this->m_sprite->getPositionY() < 0)
 	{
