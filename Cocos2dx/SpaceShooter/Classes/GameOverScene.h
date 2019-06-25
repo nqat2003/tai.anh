@@ -14,6 +14,6 @@ private:
 	Sprite* m_background;
 public:
 	static Scene* createScene();
-	virtual bool init();
+	virtual bool init() override;
 	CREATE_FUNC(GameOverScene);
 };

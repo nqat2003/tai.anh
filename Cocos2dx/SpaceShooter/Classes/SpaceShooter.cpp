@@ -1,4 +1,5 @@
 ﻿#include "SpaceShooter.h"
+#include "GameOverScene.h"
 
 SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 {
@@ -71,7 +72,9 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 			Rect plane = m_sprite->getBoundingBox();
 			if (plane.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
 			{
-				Director::getInstance()->replaceScene(TransitionFade::create(1, GameOverScene::createScene(), Color3B(0, 0, 0)));
+				log("collision");
+				//Director::getInstance()->replaceScene(TransitionFade::create(0.2f, GameOverScene::createScene(), Color3B(0, 0, 0)));
+				i = j = 5000;
 			}
 		}
 	}

@@ -13,8 +13,11 @@ private:
 	vector<Rock*> m_rocks;
 	SpaceShooter* m_spaceShip;
 	Sprite* m_background;
+	Label* m_lbScore;
+	long score;
 	int count;
 public:
+	
 	static Scene* createScene();
 	virtual bool init();
 	void update(float);

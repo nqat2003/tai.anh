@@ -1,5 +1,6 @@
 #include "GamePlayScene.h"
 
+long score = 0;
 cocos2d::Scene * GamePlayScene::createScene()
 {
 	return GamePlayScene::create();
@@ -15,6 +16,12 @@ bool GamePlayScene::init()
 	m_background->setScale(vs.width / m_background->getContentSize().width, vs.height / m_background->getContentSize().width);
 	m_background->removeFromParent();
 	addChild(m_background, -999);
+	//-------------------------------------------------------------
+	m_lbScore = ResourceManager::GetInstance()->GetLabelById(0);
+	m_lbScore->setString("Your Score: ");
+	m_lbScore->setPosition(Vec2(vs.width - 100, vs.height - 50));
+	m_lbScore->removeFromParent();
+	addChild(m_lbScore, 3);
 	//-------------------------------------------------------------
 	m_spaceShip = new SpaceShooter(this);
 	//-------------------------------------------------------------
@@ -53,6 +60,12 @@ void GamePlayScene::update(float dt)
 		}
 	}
 	m_spaceShip->Update(dt);
+	score++;
+	log("%d", score);
+	string labelText = "Your Score: ";
+	log("%s", labelText);
+	labelText += score;
+	m_lbScore->setString(labelText);
 	m_spaceShip->Collision(m_rocks);
 }
 
