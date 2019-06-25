@@ -41,7 +41,9 @@ void ResourceManager::Load(string fileName)
 		f >> off;
 		f >> pathSprite;
 		pathSprite.replace(0, 2, m_dataFolderPath);
-		m_sprites.insert(pair<int,Sprite*>(index, Sprite::create(pathSprite)));
+		Sprite* sp = Sprite::create(pathSprite);
+		sp->retain();
+		m_sprites.insert(pair<int,Sprite*>(index, sp));
 	}
 	f >> off;
 	f >> i;
@@ -59,6 +61,7 @@ void ResourceManager::Load(string fileName)
 		pathButtonNormal.replace(pathButtonNormal.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
 		pathButtonPressed.replace(pathButtonPressed.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
 		ui::Button *bt = ui::Button::create(pathButtonNormal, pathButtonPressed);
+		bt->retain();
 		m_buttons.insert(pair<int, ui::Button*>(index, bt));
 	}
 	f >> off;
@@ -73,6 +76,7 @@ void ResourceManager::Load(string fileName)
 		f >> pathFont;
 		pathFont.replace(pathFont.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
 		Label *lb = Label::createWithTTF("", pathFont, 30);
+		lb->retain();
 		m_labels.insert(pair<int, Label*>(index, lb));
 	}
 	f.close();
@@ -80,7 +84,6 @@ void ResourceManager::Load(string fileName)
 
 Sprite * ResourceManager::GetSpriteById(int id)
 {
-	m_sprites[id]->retain();
 	return m_sprites[id];
 }
 

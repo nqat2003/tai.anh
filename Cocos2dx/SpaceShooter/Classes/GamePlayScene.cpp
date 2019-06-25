@@ -2,12 +2,20 @@
 
 cocos2d::Scene * GamePlayScene::createScene()
 {
-	return nullptr;
+	return GamePlayScene::create();
 }
 
-bool GamePlayScene::Init()
+bool GamePlayScene::init()
 {
-	return false;
+	Size vs = Director::getInstance()->getVisibleSize();
+	Vec2 or = Director::getInstance()->getVisibleOrigin();
+	//-------------------------------------------------------------
+	m_background = ResourceManager::GetInstance()->GetSpriteById(0);
+	m_background->setAnchorPoint(Vec2(0, 0));
+	m_background->setScale(vs.width / m_background->getContentSize().width, vs.height / m_background->getContentSize().width);
+	m_background->removeFromParent();
+	addChild(m_background, -999);
+	return true;
 }
 
 void GamePlayScene::update(float)

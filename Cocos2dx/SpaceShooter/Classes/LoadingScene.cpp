@@ -9,6 +9,7 @@ bool LoadingScene::init()
 {
 	Size vs = Director::getInstance()->getVisibleSize();
 	Vec2 or = Director::getInstance()->getVisibleOrigin();
+	//-------------------------------------------------------------
 	background = ResourceManager::GetInstance()->GetSpriteById(0);
 	background->removeFromParent();
 	background->setAnchorPoint(Vec2(0,0));
@@ -43,7 +44,6 @@ bool LoadingScene::init()
 void LoadingScene::update(float dt)
 {
 	loadingPercent += 1;
-	log("%f", dt);
 	if (loadingPercent == 180)
 	{
 		Director::getInstance()->replaceScene(TransitionFade::create(1, MainMenuScene::createScene(), Color3B(0, 0, 0)));

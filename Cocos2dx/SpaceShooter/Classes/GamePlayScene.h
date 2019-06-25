@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "Rock.h"
 #include "SpaceShooter.h"
+#include "ResourceManager.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -11,10 +12,12 @@ class GamePlayScene : public cocos2d::Scene
 private:
 	vector<Rock*> m_rocks;
 	SpaceShooter* m_spaceShip;
+	Sprite* m_background;
 public:
-	Scene* createScene();
-	virtual bool Init();
+	static Scene* createScene();
+	virtual bool init();
 	void update(float);
+	CREATE_FUNC(GamePlayScene);
 	bool onTouchBegan(Touch*, Event*);
 	bool onTouchEnded(Touch*, Event*);
 	void onTouchMoved(Touch*, Event*);
