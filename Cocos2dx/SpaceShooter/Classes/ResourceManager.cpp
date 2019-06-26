@@ -92,38 +92,17 @@ void ResourceManager::Load(string fileName)
 		f >> pathAni;
 		pathAni.replace(pathAni.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
 		auto mySprite = Sprite::create(pathAni);
-		if (index == 0)
+		Vector<SpriteFrame*> animateFrames;
+		animateFrames.reserve(4);
+		for (register int i = 0; i < 4; i++)
 		{
-			Vector<SpriteFrame*> animateFrames;
-			animateFrames.reserve(4);
-			for (register int i = 0; i < 4; i++)
-			{
-				animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(115 * i, 0, 115, 107)));
-			}
-			Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
-			Animate* animate = Animate::create(animation);
-			mySprite->runAction(RepeatForever::create(animate));
-			mySprite->retain();
-			m_sprites_with_anime.insert(pair<int, Sprite*>(index, mySprite));
+			animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(115 * i, 0, 115, 107)));
 		}
-		if (index == 1)
-		{
-			Vector<SpriteFrame*> animateFrames;
-			animateFrames.reserve(15);
-			for (register int i = 0; i < 15; i++)
-			{
-				animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(250 * i, 0, 250, 250)));
-				if (i > 7)
-				{
-					animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(250 * i, 250, 250, 250)));
-				}
-			}
-			Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
-			Animate* animate = Animate::create(animation);
-			mySprite->runAction(RepeatForever::create(animate));
-			mySprite->retain();
-			m_sprites_with_anime.insert(pair<int, Sprite*>(index, mySprite));
-		}
+		Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
+		Animate* animate = Animate::create(animation);
+		mySprite->runAction(RepeatForever::create(animate));
+		mySprite->retain();
+		m_sprites_with_anime.insert(pair<int, Sprite*>(index, mySprite));
 	}
 	f.close();
 }

@@ -31,3 +31,5 @@ PATH: %s/Fonts/arial.ttf
 #ANIMATION 1
 ID: 0
 PATH: %s/Sprites/ship.png
+ID: 1
+PATH: %s/Sprites/explosion.png
