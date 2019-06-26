@@ -7,7 +7,7 @@ SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 	Init();
 	m_sprite->setPosition(Vec2(vs.width / 2, vs.height / 2));
 	m_sprite->setAnchorPoint(Vec2(0.5f,0.5f));
-	//m_sprite->removeFromParent();
+	m_sprite->removeFromParent();
 	m_sprite->runAction(MoveTo::create(1, Vec2(vs.width /2, 70)));
 	scene->addChild(m_sprite, 1);
 	for (register int i = 0; i < BULLET_N; i++)
@@ -66,14 +66,15 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 		{
 			Rect bullet = m_bullets[i]->getSprite()->getBoundingBox();
 			Rect rock = rocks[j]->getSprite()->getBoundingBox();
+			//Check collision between bullet and rock
 			if (bullet.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
 			{
 				rocks[j]->getSprite()->setVisible(false);
 			}
 			Rect plane = m_sprite->getBoundingBox();
+			//Check collision between rock and spaceship
 			if (plane.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
 			{
-				//log("collision");
 				m_sprite->setVisible(false);
 				i = j = 5000;
 			}

@@ -41,7 +41,8 @@ void ResourceManager::Load(string fileName)
 		f >> off;
 		f >> pathSprite;
 		pathSprite.replace(0, 2, m_dataFolderPath);
-		Sprite* sp = Sprite::create(pathSprite);
+		auto pinfo = AutoPolygon::generatePolygon(pathSprite);
+		auto sp = Sprite::create(pinfo);
 		sp->retain();
 		m_sprites.insert(pair<int,Sprite*>(index, sp));
 	}

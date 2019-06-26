@@ -14,7 +14,7 @@ private:
 	SpaceShooter* m_spaceShip;
 	Sprite* m_background;
 	Label* m_lbScore;
-	long score;
+	int score;
 	int count;
 public:
 	

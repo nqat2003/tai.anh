@@ -1,7 +1,7 @@
 #include "GamePlayScene.h"
 #include "GameOverScene.h"
 
-long score = 0;
+int score = 0;
 cocos2d::Scene * GamePlayScene::createScene()
 {
 	return GamePlayScene::create();
@@ -26,6 +26,7 @@ bool GamePlayScene::init()
 	addChild(m_lbScore, 3);
 	//-------------------------------------------------------------
 	m_spaceShip = new SpaceShooter(this);
+	m_spaceShip->getSprite()->setVisible(true);
 	//-------------------------------------------------------------
 	for (register int i = 0; i < 10; i++)
 	{
@@ -48,10 +49,8 @@ void GamePlayScene::update(float dt)
 {
 	if (!m_spaceShip->getSprite()->isVisible())
 	{
-		//Director::getInstance()->pause();
 		Director::getInstance()->getRunningScene()->pause();
 		Director::getInstance()->replaceScene(TransitionFade::create(0.2f, GameOverScene::createScene(), Color3B(0, 0, 0)));
-
 	}
 	if (count == 10)
 	{
