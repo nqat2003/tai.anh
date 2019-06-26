@@ -6,7 +6,7 @@ SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 	Size vs = Director::getInstance()->getVisibleSize();
 	Init();
 	m_sprite->setPosition(Vec2(vs.width / 2, vs.height / 2));
-	m_sprite->setAnchorPoint(Vec2(0.5f,0.5f));
+	//m_sprite->setAnchorPoint(Vec2(0.5f,0.5f));
 	m_sprite->removeFromParent();
 	m_sprite->runAction(MoveTo::create(1, Vec2(vs.width /2, 70)));
 	scene->addChild(m_sprite, 1);
@@ -24,7 +24,7 @@ SpaceShooter::~SpaceShooter()
 
 void SpaceShooter::Init()
 {
-	m_sprite = ResourceManager::GetInstance()->GetSpriteAnimeById(0);
+	this->m_sprite = ResourceManager::GetInstance()->GetAnimateById(0);
 }
 
 void SpaceShooter::Update(float dt)
@@ -82,27 +82,25 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 				//Check collision between rock and spaceship
 				if (plane.intersectsRect(rock))
 				{
-					
+					auto *expl = ParticleSystemQuad::create("explosion_texture.plist");
+					expl->setVisible(true);
+					expl->setPosition(m_sprite->getPosition());
+					scene->addChild(expl);
 					m_sprite->setVisible(false);
 					i = j = 5000;
-					
 				}
 				//Check collision with distance formula
-				//int xA = m_sprite->getPositionX();
-				//int xB = m_sprite->getPositionY();
-				//int yA = rocks[j]->getSprite()->getPositionX();
-				//int yB = rocks[j]->getSprite()->getPositionY();
-				//int rA = m_sprite->getContentSize().width / 2;
-				//int rB = rocks[j]->getSprite()->getContentSize().width / 2;
+				//float xA = m_sprite->getPositionX();
+				//float xB = m_sprite->getPositionY();
+				//float yA = rocks[j]->getSprite()->getPositionX();
+				//float yB = rocks[j]->getSprite()->getPositionY();
+				//float rA = m_sprite->getContentSize().width / 2;
+				//float rB = rocks[j]->getSprite()->getContentSize().width / 2;
 				//bool check_space_collision = ((xA - xB) * (xA - xB) + (yA - yB) * (yA - yB)) < ((rA + rB)*(rA + rB));
 				//if (check_space_collision)
 				//{
-				//	//log("collision");
-				//	if (rocks[j]->getSprite()->isVisible())
-				//	{
-				//		m_sprite->setVisible(false);
-				//	}
-				//	
+				//	m_sprite->setVisible(false);
+				//	//Exit loop
 				//	i = j = 50000;
 				//}
 			}

@@ -109,7 +109,14 @@ bool GamePlayScene::onTouchEnded(cocos2d::Touch *, cocos2d::Event *)
 
 void GamePlayScene::onTouchMoved(cocos2d::Touch * t, cocos2d::Event * e)
 {
-	m_spaceShip->getSprite()->setPosition(t->getLocation());
+	Size vs = Director::getInstance()->getVisibleSize();
+	if (t->getLocation().x < vs.width && t->getLocation().x > 0)
+	{
+		if (t->getLocation().y < vs.height && t->getLocation().y > 0)
+		{
+			m_spaceShip->getSprite()->setPosition(t->getLocation());
+		}
+	}
 }
 
 int GamePlayScene::getScore()

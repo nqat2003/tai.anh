@@ -91,18 +91,18 @@ void ResourceManager::Load(string fileName)
 		f >> off;
 		f >> pathAni;
 		pathAni.replace(pathAni.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
-		auto mySprite = Sprite::create(pathAni);
+		auto sp = Sprite::create(pathAni);
 		Vector<SpriteFrame*> animateFrames;
-		animateFrames.reserve(4);
+		//animateFrames.reserve(4);
 		for (register int i = 0; i < 4; i++)
 		{
 			animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(115 * i, 0, 115, 107)));
 		}
 		Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.2f);
 		Animate* animate = Animate::create(animation);
-		mySprite->runAction(RepeatForever::create(animate));
-		mySprite->retain();
-		m_sprites_with_anime.insert(pair<int, Sprite*>(index, mySprite));
+		sp->runAction(RepeatForever::create(animate));
+		sp->retain();
+		m_animate.insert(pair<int, Sprite*>(index, sp));
 	}
 	f.close();
 }
@@ -141,7 +141,7 @@ Sprite * ResourceManager::DuplicateSprite(Sprite * sprite)
 	return pRet;
 }
 
-Sprite * ResourceManager::GetSpriteAnimeById(int id)
+Sprite * ResourceManager::GetAnimateById(int id)
 {
-	return m_sprites_with_anime[id];
+	return m_animate[id];
 }
