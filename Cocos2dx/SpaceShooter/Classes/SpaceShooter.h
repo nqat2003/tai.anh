@@ -13,6 +13,7 @@ class SpaceShooter : public Objectt
 private:
 	vector<Objectt*> m_bullets;
 	int count;
+	Scene* scene;
 public:
 	SpaceShooter(Scene*);
 	~SpaceShooter();

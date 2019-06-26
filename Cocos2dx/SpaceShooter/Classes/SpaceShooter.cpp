@@ -14,7 +14,7 @@ SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 	{
 		m_bullets.push_back(new Bullet(scene));
 	}
-	
+	this->scene = scene;
 	count = 0;
 }
 
@@ -72,14 +72,20 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 				//Check collision between bullet and rock
 				if (bullet.intersectsRect(rock))
 				{
+					auto *expl = ParticleSystemQuad::create("particle_texture.plist");
+					expl->setVisible(true);
+					expl->setPosition(rocks[j]->getSprite()->getPosition());
+					scene->addChild(expl);
 					rocks[j]->getSprite()->setVisible(false);
 				}
 				Rect plane = m_sprite->getBoundingBox();
 				//Check collision between rock and spaceship
 				if (plane.intersectsRect(rock))
 				{
+					
 					m_sprite->setVisible(false);
 					i = j = 5000;
+					
 				}
 				//Check collision with distance formula
 				//int xA = m_sprite->getPositionX();

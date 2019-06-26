@@ -50,7 +50,7 @@ void GamePlayScene::update(float dt)
 	if (!m_spaceShip->getSprite()->isVisible())
 	{
 		Director::getInstance()->getRunningScene()->pause();
-		Director::getInstance()->replaceScene(TransitionFadeTR::create(1.2f, GameOverScene::createScene()));
+		Director::getInstance()->replaceScene(TransitionCrossFade::create(2.0f, GameOverScene::createScene()));
 	}
 	if (count == 10)
 	{

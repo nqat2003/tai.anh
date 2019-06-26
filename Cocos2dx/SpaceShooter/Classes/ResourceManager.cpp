@@ -98,7 +98,7 @@ void ResourceManager::Load(string fileName)
 		{
 			animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(115 * i, 0, 115, 107)));
 		}
-		Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
+		Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.2f);
 		Animate* animate = Animate::create(animation);
 		mySprite->runAction(RepeatForever::create(animate));
 		mySprite->retain();

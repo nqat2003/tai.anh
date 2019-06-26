@@ -10,7 +10,7 @@ public:
 	static Scene* createScene();
 	virtual bool init();
 	CREATE_FUNC(LoadingScene);
-	void update(float);
+	void update(float) override;
 private:
 	int loadingPercent;
 	Sprite* background;
