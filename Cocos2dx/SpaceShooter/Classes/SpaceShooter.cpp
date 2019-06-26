@@ -1,12 +1,13 @@
 ﻿#include "SpaceShooter.h"
-#include "GameOverScene.h"
+#include "GamePlayScene.h"
 
 SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 {
 	Size vs = Director::getInstance()->getVisibleSize();
 	Init();
 	m_sprite->setPosition(Vec2(vs.width / 2, vs.height / 2));
-	m_sprite->removeFromParent();
+	m_sprite->setAnchorPoint(Vec2(0.5f,0.5f));
+	//m_sprite->removeFromParent();
 	m_sprite->runAction(MoveTo::create(1, Vec2(vs.width /2, 70)));
 	scene->addChild(m_sprite, 1);
 	for (register int i = 0; i < BULLET_N; i++)
@@ -72,10 +73,28 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 			Rect plane = m_sprite->getBoundingBox();
 			if (plane.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
 			{
-				log("collision");
-				//Director::getInstance()->replaceScene(TransitionFade::create(0.2f, GameOverScene::createScene(), Color3B(0, 0, 0)));
+				//log("collision");
+				m_sprite->setVisible(false);
 				i = j = 5000;
 			}
+			//Check collision with distance formula
+			//int xA = m_sprite->getPositionX();
+			//int xB = m_sprite->getPositionY();
+			//int yA = rocks[j]->getSprite()->getPositionX();
+			//int yB = rocks[j]->getSprite()->getPositionY();
+			//int rA = m_sprite->getContentSize().width / 2;
+			//int rB = rocks[j]->getSprite()->getContentSize().width / 2;
+			//bool check_space_collision = ((xA - xB) * (xA - xB) + (yA - yB) * (yA - yB)) < ((rA + rB)*(rA + rB));
+			//if (check_space_collision)
+			//{
+			//	//log("collision");
+			//	if (rocks[j]->getSprite()->isVisible())
+			//	{
+			//		m_sprite->setVisible(false);
+			//	}
+			//	
+			//	i = j = 50000;
+			//}
 		}
 	}
 }

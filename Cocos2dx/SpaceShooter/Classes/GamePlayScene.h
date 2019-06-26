@@ -26,4 +26,6 @@ public:
 	bool onTouchBegan(Touch*, Event*);
 	bool onTouchEnded(Touch*, Event*);
 	void onTouchMoved(Touch*, Event*);
+	int getScore();
+	void setScore(int);
 };

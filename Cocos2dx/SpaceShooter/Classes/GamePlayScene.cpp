@@ -1,4 +1,5 @@
 #include "GamePlayScene.h"
+#include "GameOverScene.h"
 
 long score = 0;
 cocos2d::Scene * GamePlayScene::createScene()
@@ -18,7 +19,8 @@ bool GamePlayScene::init()
 	addChild(m_background, -999);
 	//-------------------------------------------------------------
 	m_lbScore = ResourceManager::GetInstance()->GetLabelById(0);
-	m_lbScore->setString("Your Score: ");
+	string label = "Your Score: " + to_string(GamePlayScene::getScore());
+	m_lbScore->setString(label);
 	m_lbScore->setPosition(Vec2(vs.width - 100, vs.height - 50));
 	m_lbScore->removeFromParent();
 	addChild(m_lbScore, 3);
@@ -44,9 +46,17 @@ bool GamePlayScene::init()
 
 void GamePlayScene::update(float dt)
 {
+	if (!m_spaceShip->getSprite()->isVisible())
+	{
+		//Director::getInstance()->pause();
+		Director::getInstance()->getRunningScene()->pause();
+		Director::getInstance()->replaceScene(TransitionFade::create(0.2f, GameOverScene::createScene(), Color3B(0, 0, 0)));
+
+	}
 	if (count == 10)
 	{
 		generateRock();
+		score++;
 		count = 0;
 	}
 	else {
@@ -60,11 +70,8 @@ void GamePlayScene::update(float dt)
 		}
 	}
 	m_spaceShip->Update(dt);
-	score++;
-	log("%d", score);
 	string labelText = "Your Score: ";
-	log("%s", labelText);
-	labelText += score;
+	labelText += to_string(score);
 	m_lbScore->setString(labelText);
 	m_spaceShip->Collision(m_rocks);
 }
@@ -100,4 +107,14 @@ bool GamePlayScene::onTouchEnded(cocos2d::Touch *, cocos2d::Event *)
 void GamePlayScene::onTouchMoved(cocos2d::Touch * t, cocos2d::Event * e)
 {
 	m_spaceShip->getSprite()->setPosition(t->getLocation());
+}
+
+int GamePlayScene::getScore()
+{
+	return this->score;
+}
+
+void GamePlayScene::setScore(int score)
+{
+	this->score += score;
 }

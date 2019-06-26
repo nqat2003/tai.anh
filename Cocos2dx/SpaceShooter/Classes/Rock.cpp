@@ -3,7 +3,7 @@
 Rock::Rock(cocos2d::Scene * scene)
 {
 	Init();
-	m_sprite->removeFromParent();
+	//m_sprite->removeFromParent();
 	scene->addChild(m_sprite, 1);
 }
 
