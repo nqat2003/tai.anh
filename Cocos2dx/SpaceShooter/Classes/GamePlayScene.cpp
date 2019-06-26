@@ -50,7 +50,7 @@ void GamePlayScene::update(float dt)
 	if (!m_spaceShip->getSprite()->isVisible())
 	{
 		Director::getInstance()->getRunningScene()->pause();
-		Director::getInstance()->replaceScene(TransitionFade::create(0.2f, GameOverScene::createScene(), Color3B(0, 0, 0)));
+		Director::getInstance()->replaceScene(TransitionFadeTR::create(1.2f, GameOverScene::createScene()));
 	}
 	if (count == 10)
 	{
@@ -95,7 +95,11 @@ void GamePlayScene::generateRock()
 bool GamePlayScene::onTouchBegan(cocos2d::Touch * t, cocos2d::Event * e)
 {
 	//m_spaceShip->getSprite()->setPosition(t->getLocation());
-	return true;
+	if (m_spaceShip->getSprite()->getBoundingBox().containsPoint(t->getLocation()))
+	{
+		return true;
+	}
+	return false;
 }
 
 bool GamePlayScene::onTouchEnded(cocos2d::Touch *, cocos2d::Event *)

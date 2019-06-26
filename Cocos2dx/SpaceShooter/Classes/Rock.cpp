@@ -14,6 +14,7 @@ Rock::~Rock()
 void Rock::Init()
 {
 	m_sprite = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteById(3));
+	destroy = ResourceManager::GetInstance()->DuplicateSprite(ResourceManager::GetInstance()->GetSpriteAnimeById(1));
 }
 
 void Rock::Update(float dt)
@@ -23,4 +24,10 @@ void Rock::Update(float dt)
 	{
 		this->m_sprite->setVisible(false);
 	}
+}
+
+void Rock::Destroy()
+{
+	destroy->removeFromParent();
+	destroy->setPosition(m_sprite->getPosition());
 }

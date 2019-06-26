@@ -14,6 +14,7 @@ private:
 	map<int, Sprite*> m_sprites;
 	map<int, ui::Button*> m_buttons;
 	map<int, Label*> m_labels;
+	map<int, Sprite*> m_sprites_with_anime;
 public:
 	ResourceManager();
 	~ResourceManager();
@@ -24,4 +25,5 @@ public:
 	ui::Button* GetButtonById(int);
 	Label* GetLabelById(int);
 	Sprite * DuplicateSprite(Sprite*);
+	Sprite * GetSpriteAnimeById(int);
 };

@@ -80,6 +80,51 @@ void ResourceManager::Load(string fileName)
 		lb->retain();
 		m_labels.insert(pair<int, Label*>(index, lb));
 	}
+	f >> off;
+	f >> i;
+	for (register int a = 0; a < i; a++)
+	{
+		int index;
+		string pathAni;
+		f >> off;
+		f >> index;
+		f >> off;
+		f >> pathAni;
+		pathAni.replace(pathAni.find("%s"), sizeof("%s") - 1, m_dataFolderPath);
+		auto mySprite = Sprite::create(pathAni);
+		if (index == 0)
+		{
+			Vector<SpriteFrame*> animateFrames;
+			animateFrames.reserve(4);
+			for (register int i = 0; i < 4; i++)
+			{
+				animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(115 * i, 0, 115, 107)));
+			}
+			Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
+			Animate* animate = Animate::create(animation);
+			mySprite->runAction(RepeatForever::create(animate));
+			mySprite->retain();
+			m_sprites_with_anime.insert(pair<int, Sprite*>(index, mySprite));
+		}
+		if (index == 1)
+		{
+			Vector<SpriteFrame*> animateFrames;
+			animateFrames.reserve(15);
+			for (register int i = 0; i < 15; i++)
+			{
+				animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(250 * i, 0, 250, 250)));
+				if (i > 7)
+				{
+					animateFrames.pushBack(SpriteFrame::create(pathAni, Rect(250 * i, 250, 250, 250)));
+				}
+			}
+			Animation* animation = Animation::createWithSpriteFrames(animateFrames, 0.1f);
+			Animate* animate = Animate::create(animation);
+			mySprite->runAction(RepeatForever::create(animate));
+			mySprite->retain();
+			m_sprites_with_anime.insert(pair<int, Sprite*>(index, mySprite));
+		}
+	}
 	f.close();
 }
 
@@ -115,4 +160,9 @@ Sprite * ResourceManager::DuplicateSprite(Sprite * sprite)
 		}
 	}
 	return pRet;
+}
+
+Sprite * ResourceManager::GetSpriteAnimeById(int id)
+{
+	return m_sprites_with_anime[id];
 }

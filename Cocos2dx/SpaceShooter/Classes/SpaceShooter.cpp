@@ -14,6 +14,7 @@ SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 	{
 		m_bullets.push_back(new Bullet(scene));
 	}
+	
 	count = 0;
 }
 
@@ -23,7 +24,7 @@ SpaceShooter::~SpaceShooter()
 
 void SpaceShooter::Init()
 {
-	m_sprite = ResourceManager::GetInstance()->GetSpriteById(4);
+	m_sprite = ResourceManager::GetInstance()->GetSpriteAnimeById(0);
 }
 
 void SpaceShooter::Update(float dt)
@@ -64,38 +65,41 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 	{
 		for (register int j = 0; j < rocks.size(); j++)
 		{
-			Rect bullet = m_bullets[i]->getSprite()->getBoundingBox();
-			Rect rock = rocks[j]->getSprite()->getBoundingBox();
-			//Check collision between bullet and rock
-			if (bullet.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
+			if (rocks[j]->getSprite()->isVisible())
 			{
-				rocks[j]->getSprite()->setVisible(false);
+				Rect bullet = m_bullets[i]->getSprite()->getBoundingBox();
+				Rect rock = rocks[j]->getSprite()->getBoundingBox();
+				//Check collision between bullet and rock
+				if (bullet.intersectsRect(rock))
+				{
+					rocks[j]->getSprite()->setVisible(false);
+				}
+				Rect plane = m_sprite->getBoundingBox();
+				//Check collision between rock and spaceship
+				if (plane.intersectsRect(rock))
+				{
+					m_sprite->setVisible(false);
+					i = j = 5000;
+				}
+				//Check collision with distance formula
+				//int xA = m_sprite->getPositionX();
+				//int xB = m_sprite->getPositionY();
+				//int yA = rocks[j]->getSprite()->getPositionX();
+				//int yB = rocks[j]->getSprite()->getPositionY();
+				//int rA = m_sprite->getContentSize().width / 2;
+				//int rB = rocks[j]->getSprite()->getContentSize().width / 2;
+				//bool check_space_collision = ((xA - xB) * (xA - xB) + (yA - yB) * (yA - yB)) < ((rA + rB)*(rA + rB));
+				//if (check_space_collision)
+				//{
+				//	//log("collision");
+				//	if (rocks[j]->getSprite()->isVisible())
+				//	{
+				//		m_sprite->setVisible(false);
+				//	}
+				//	
+				//	i = j = 50000;
+				//}
 			}
-			Rect plane = m_sprite->getBoundingBox();
-			//Check collision between rock and spaceship
-			if (plane.intersectsRect(rock) && rocks[j]->getSprite()->isVisible())
-			{
-				m_sprite->setVisible(false);
-				i = j = 5000;
-			}
-			//Check collision with distance formula
-			//int xA = m_sprite->getPositionX();
-			//int xB = m_sprite->getPositionY();
-			//int yA = rocks[j]->getSprite()->getPositionX();
-			//int yB = rocks[j]->getSprite()->getPositionY();
-			//int rA = m_sprite->getContentSize().width / 2;
-			//int rB = rocks[j]->getSprite()->getContentSize().width / 2;
-			//bool check_space_collision = ((xA - xB) * (xA - xB) + (yA - yB) * (yA - yB)) < ((rA + rB)*(rA + rB));
-			//if (check_space_collision)
-			//{
-			//	//log("collision");
-			//	if (rocks[j]->getSprite()->isVisible())
-			//	{
-			//		m_sprite->setVisible(false);
-			//	}
-			//	
-			//	i = j = 50000;
-			//}
 		}
 	}
 }

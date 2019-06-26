@@ -20,7 +20,7 @@ bool GameOverScene::init()
 	m_gameOver->setString("GAME OVER");
 	m_gameOver->setScale(1.5f);
 	m_gameOver->setPosition(Vec2(vs.width / 2, vs.height / 2 + 150));
-	m_gameOver->enableOutline(Color4B::MAGENTA, 2);
+	m_gameOver->enableOutline(Color4B::ORANGE, 2);
 	m_gameOver->enableShadow();
 	m_gameOver->removeFromParent();
 	addChild(m_gameOver, 0);
@@ -36,6 +36,13 @@ bool GameOverScene::init()
 	m_btnAgain->setScale(0.69999998f);
 	m_btnAgain->removeFromParent();
 	addChild(m_btnAgain, 0);
+	//-------------------------------------------------------------
+	auto fo = FadeOut::create(0);
+	auto fi = FadeIn::create(2.0f);
+	auto seq = Sequence::create(fo, DelayTime::create(1), fi, nullptr);
+	m_gameOver->runAction(seq);
+	m_score->runAction(seq);
+	//-------------------------------------------------------------
 	m_btnAgain->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
 		switch (type)
 		{
