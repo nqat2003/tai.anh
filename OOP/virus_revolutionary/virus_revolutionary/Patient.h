@@ -18,5 +18,9 @@ public:
 	void DoDie();
 	int GetRegistance();
 	int GetState();
+<<<<<<< HEAD
+=======
+	int Display(int);
+>>>>>>> SpaceShooter
 };
 

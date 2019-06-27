@@ -71,6 +71,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+<<<<<<< HEAD
+=======
+    <IncludePath>E:\Downloads\Compressed\Visual Leak Detector_portable_vs15\include;$(IncludePath)</IncludePath>
+>>>>>>> SpaceShooter
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -92,6 +96,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+<<<<<<< HEAD
+=======
+      <AdditionalLibraryDirectories>E:\Downloads\Compressed\Visual Leak Detector_portable_vs15\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+>>>>>>> SpaceShooter
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

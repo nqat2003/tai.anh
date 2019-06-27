@@ -3,7 +3,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+<<<<<<< HEAD
 
+=======
+#include <iomanip>
+>>>>>>> SpaceShooter
 
 using namespace std;
 
@@ -11,6 +15,14 @@ FluVirus::FluVirus()
 {
 	DoBorn();
 	InitResistance();
+<<<<<<< HEAD
+=======
+	string type = m_Color == 1 ? "Red" : "Blue";
+	cout << left << setw(15) << "Flu Virus " 
+		<< left << setw(3) << ":" 
+		<< left << setw(10) << type 
+		<< "Resistance: " << m_resistance <<  endl;
+>>>>>>> SpaceShooter
 }
 
 FluVirus::FluVirus(char * dna, int resistance, int color) : PureVirus(dna, resistance)
@@ -21,6 +33,10 @@ FluVirus::FluVirus(char * dna, int resistance, int color) : PureVirus(dna, resis
 
 FluVirus::~FluVirus()
 {
+<<<<<<< HEAD
+=======
+	DoDie();
+>>>>>>> SpaceShooter
 }
 
 
@@ -40,7 +56,11 @@ list<PureVirus*> FluVirus::DoClone()
 
 void FluVirus::DoDie()
 {
+<<<<<<< HEAD
 	//delete this;
+=======
+	
+>>>>>>> SpaceShooter
 }
 
 void FluVirus::InitResistance()

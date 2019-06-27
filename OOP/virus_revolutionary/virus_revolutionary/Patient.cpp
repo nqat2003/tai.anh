@@ -16,6 +16,14 @@ Patient::Patient()
 
 Patient::~Patient()
 {
+<<<<<<< HEAD
+=======
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	{
+		delete (*it);
+	}
+	m_virusList.clear();
+>>>>>>> SpaceShooter
 }
 
 void Patient::InitResistance()
@@ -48,6 +56,7 @@ void Patient::DoStart()
 	}
 	
 }
+<<<<<<< HEAD
 void Patient::TakeMedicine(int medicine_resistance)
 {
 	int totalVirusResistance = 0;
@@ -82,6 +91,42 @@ void Patient::TakeMedicine(int medicine_resistance)
 	if (count == 0)
 	{
 		cout << "All virus dead" << endl;
+=======
+
+
+
+void Patient::TakeMedicine(int medicine_resistance)
+{
+	int totalVirusResistance = 0;
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();)
+	{
+		(*it)->ReduceResistance(medicine_resistance);
+		if ((*it)->GetResistance() <= 0)
+		{
+			//delete[] (*it)->m_dna;
+			delete (*it);
+			it = m_virusList.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	{
+		//list<PureVirus*> temp = (*it)->DoClone();
+		m_virusList.splice(m_virusList.begin(), (*it)->DoClone());
+	}
+	totalVirusResistance = Display(medicine_resistance);
+	//Reduce resistance of Human when take medicine. 
+	m_resistance -= totalVirusResistance;
+
+	//Check if all virus dead
+	if (m_virusList.size() == 0)
+	{
+		cout << "All virus dead" << endl;
+		delete this;
+>>>>>>> SpaceShooter
 		system("pause"); exit(0);
 	}
 	//Check patient alive
@@ -90,13 +135,47 @@ void Patient::TakeMedicine(int medicine_resistance)
 		DoDie();
 		m_state = 0;
 		cout << "Patient dead." << endl;
+<<<<<<< HEAD
+=======
+		delete this;
+>>>>>>> SpaceShooter
 		system("pause"); exit(0);
 	}
 }
 
+<<<<<<< HEAD
 
 void Patient::DoDie()
 {
+=======
+int Patient::Display(int medicine_resistance)
+{
+	int totalVirusResistance = 0;
+	cout << "List resistance of living virus: " << endl;
+
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end();it++)
+	{
+		cout << (*it)->GetResistance() << " ";
+		totalVirusResistance += (*it)->GetResistance();
+	}
+	//Reduce resistance of Human when take medicine. 
+	m_resistance -= totalVirusResistance;
+	cout << endl << "Patient's resistance after take medicine: " << m_resistance << endl;
+	cout << "Medicine's resistance last time: " << medicine_resistance << endl;
+	cout << "Number of virus:  " << m_virusList.size() << endl;
+	cout << "Total Virus's resistance: " << totalVirusResistance << endl;
+	cout << "=============================" << endl;
+
+	return totalVirusResistance;
+}
+
+void Patient::DoDie()
+{
+	for (list<PureVirus*>::iterator it = m_virusList.begin(); it != m_virusList.end(); it++)
+	{
+		delete (*it);
+	}
+>>>>>>> SpaceShooter
 	m_virusList.clear();
 	m_state = 0;
 }
@@ -109,4 +188,8 @@ int Patient::GetRegistance()
 int Patient::GetState()
 {
 	return m_state;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> SpaceShooter

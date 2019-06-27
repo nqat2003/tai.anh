@@ -3,13 +3,27 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+<<<<<<< HEAD
+=======
+#include <iomanip>
+>>>>>>> SpaceShooter
 
 
 using namespace std;
 DengueVirus::DengueVirus()
 {
+<<<<<<< HEAD
 	DoBorn();
 	InitResistance();
+=======
+	
+	DoBorn();
+	InitResistance();
+	cout << left << setw(15) << "Dengue Virus" 
+		<< left << setw(3) << ":" 
+		<< left << setw(10) << m_protein 
+		<< "Resistance: " << m_resistance << endl;
+>>>>>>> SpaceShooter
 }
 
 DengueVirus::DengueVirus(char * dna, int resistance, char abc[]) : PureVirus(dna,resistance)
@@ -20,7 +34,11 @@ DengueVirus::DengueVirus(char * dna, int resistance, char abc[]) : PureVirus(dna
 
 DengueVirus::~DengueVirus()
 {
+<<<<<<< HEAD
 	
+=======
+	DoDie();
+>>>>>>> SpaceShooter
 	
 }
 
@@ -48,15 +66,26 @@ void DengueVirus::DoBorn()
 list<PureVirus*> DengueVirus::DoClone()
 {
 	auto *clonevirus = new DengueVirus(m_dna, m_resistance, m_protein);
+<<<<<<< HEAD
 	list<PureVirus*> temp;
 	temp.push_back(clonevirus);
 	temp.push_back(clonevirus);
+=======
+	auto *clonevirus2 = new DengueVirus(m_dna, m_resistance, m_protein);
+	list<PureVirus*> temp;
+	temp.push_back(clonevirus);
+	temp.push_back(clonevirus2);
+>>>>>>> SpaceShooter
 	return temp;
 }
 
 void DengueVirus::DoDie()
 {
+<<<<<<< HEAD
 	//delete this;
+=======
+	
+>>>>>>> SpaceShooter
 }
 
 void DengueVirus::InitResistance()

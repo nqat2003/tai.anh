@@ -13,13 +13,25 @@ PureVirus::PureVirus()
 
 PureVirus::PureVirus(char * dna, int resistance)
 {
+<<<<<<< HEAD
 	m_dna = dna;
+=======
+	m_dna = new char[49];
+	for (register int i = 0; i <= 49; i++)
+	{
+		m_dna[i] = dna[i];
+	}
+>>>>>>> SpaceShooter
 	m_resistance = resistance;
 }
 
 
 PureVirus::~PureVirus()
 {
+<<<<<<< HEAD
+=======
+	delete[] this->m_dna;
+>>>>>>> SpaceShooter
 }
 
 PureVirus::PureVirus(PureVirus * virus)
@@ -29,18 +41,30 @@ PureVirus::PureVirus(PureVirus * virus)
 void PureVirus::LoadADNInformation()
 {
 	fstream f;
+<<<<<<< HEAD
 	f.open("ATGX.bin", ios::in);
 	if (!f.eof())
 	{
 		char a[100];
 		f >> a;
 		this->m_dna = (char *)a;
+=======
+	f.open("ATGX.bin");
+	if (!f.eof())
+	{
+		m_dna = new char[49];
+		f >> m_dna;
+>>>>>>> SpaceShooter
 		f.close();
 	}
 	else
 	{
 		cout << "LOAD FILE ERROR." << endl;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> SpaceShooter
 }
 
 void PureVirus::ReduceResistance(int medicine_resistance)

@@ -4,12 +4,22 @@ using namespace std;
 class PureVirus
 {
 protected:
+<<<<<<< HEAD
 	char *m_dna;
 	int m_resistance;
 public:
 	PureVirus();
 	PureVirus(char*, int);
 	~PureVirus();
+=======
+	
+	int m_resistance;
+public:
+	char *m_dna;
+	PureVirus();
+	PureVirus(char*, int);
+	virtual ~PureVirus();
+>>>>>>> SpaceShooter
 	PureVirus(PureVirus *virus);
 	void LoadADNInformation();
 	void ReduceResistance(int);
