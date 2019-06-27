@@ -1,8 +1,8 @@
 ﻿#include "SpaceShooter.h"
 #include "GamePlayScene.h"
-
 SpaceShooter::SpaceShooter(cocos2d::Scene * scene)
 {
+	audio = SimpleAudioEngine::getInstance();
 	Size vs = Director::getInstance()->getVisibleSize();
 	Init();
 	m_sprite->setPosition(Vec2(vs.width / 2, vs.height / 2));
@@ -72,17 +72,19 @@ void SpaceShooter::Collision(vector<Rock*> rocks)
 				//Check collision between bullet and rock
 				if (bullet.intersectsRect(rock))
 				{
-					auto *expl = ParticleSystemQuad::create("particle_texture.plist");
+					auto *expl = ParticleSystemQuad::create("MeteorExplosion.plist");
 					expl->setVisible(true);
 					expl->setPosition(rocks[j]->getSprite()->getPosition());
 					scene->addChild(expl);
+					audio->playEffect("explosion_asteroid.wav", false);
+					audio->setEffectsVolume(1.0f);
 					rocks[j]->getSprite()->setVisible(false);
 				}
 				Rect plane = m_sprite->getBoundingBox();
 				//Check collision between rock and spaceship
 				if (plane.intersectsRect(rock))
 				{
-					auto *expl = ParticleSystemQuad::create("explosion_texture.plist");
+					auto *expl = ParticleSystemQuad::create("PlayerShipExplosion.plist");
 					expl->setVisible(true);
 					expl->setPosition(m_sprite->getPosition());
 					scene->addChild(expl);

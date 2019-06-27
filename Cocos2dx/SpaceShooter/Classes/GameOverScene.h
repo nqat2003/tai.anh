@@ -4,6 +4,9 @@
 #include "ResourceManager.h"
 #include "MainMenuScene.h"
 #include "GamePlayScene.h"
+#include "SimpleAudioEngine.h"
+
+using namespace CocosDenshion;
 using namespace std;
 using namespace cocos2d;
 class GameOverScene : public cocos2d::Scene

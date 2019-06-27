@@ -10,11 +10,19 @@ bool GameOverScene::init()
 	Size vs = Director::getInstance()->getVisibleSize();
 	Vec2 or = Director::getInstance()->getVisibleOrigin();
 	//-------------------------------------------------------------
+	// pause background effect.
+	auto audio = SimpleAudioEngine::getInstance();
+	audio->pauseBackgroundMusic();
+	//-------------------------------------------------------------
 	m_background = ResourceManager::GetInstance()->GetSpriteById(0);
 	m_background->setAnchorPoint(Vec2(0, 0));
 	m_background->setScale(vs.width / m_background->getContentSize().width, vs.height / m_background->getContentSize().width);
 	m_background->removeFromParent();
 	addChild(m_background, -999);
+	//-------------------------------------------------------------
+	auto fo = FadeOut::create(0);
+	auto fi = FadeIn::create(2.0f);
+	auto seq = Sequence::create(fo, DelayTime::create(2), fi, nullptr);
 	//-------------------------------------------------------------
 	m_gameOver = ResourceManager::GetInstance()->GetLabelById(1);
 	m_gameOver->setString("GAME OVER");
@@ -23,12 +31,14 @@ bool GameOverScene::init()
 	m_gameOver->enableOutline(Color4B::ORANGE, 2);
 	m_gameOver->enableShadow();
 	m_gameOver->removeFromParent();
+	m_gameOver->runAction(seq);
 	addChild(m_gameOver, 0);
 	//-------------------------------------------------------------
 	m_score = ResourceManager::GetInstance()->GetLabelById(0);
 	m_score->setString("Your score: 3");
 	m_score->setPosition(Vec2(vs.width / 2, vs.height / 2 + 70));
 	m_score->removeFromParent();
+	m_score->runAction(seq);
 	addChild(m_score, 0);
 	//-------------------------------------------------------------
 	m_btnAgain = ResourceManager::GetInstance()->GetButtonById(1);
@@ -36,12 +46,6 @@ bool GameOverScene::init()
 	m_btnAgain->setScale(0.69999998f);
 	m_btnAgain->removeFromParent();
 	addChild(m_btnAgain, 0);
-	//-------------------------------------------------------------
-	auto fo = FadeOut::create(0);
-	auto fi = FadeIn::create(2.0f);
-	auto seq = Sequence::create(fo, DelayTime::create(1), fi, nullptr);
-	m_gameOver->runAction(seq);
-	m_score->runAction(seq);
 	//-------------------------------------------------------------
 	m_btnAgain->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type) {
 		switch (type)

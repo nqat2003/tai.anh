@@ -1,5 +1,7 @@
 #include "GamePlayScene.h"
 #include "GameOverScene.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 int score = 0;
 cocos2d::Scene * GamePlayScene::createScene()
@@ -11,6 +13,11 @@ bool GamePlayScene::init()
 {
 	Size vs = Director::getInstance()->getVisibleSize();
 	Vec2 or = Director::getInstance()->getVisibleOrigin();
+	//-------------------------------------------------------------
+	auto audio = SimpleAudioEngine::getInstance();
+	// set the background music and continuously play it.
+	audio->playBackgroundMusic("ingame.mp3", true);
+	audio->setEffectsVolume(0.6f);
 	//-------------------------------------------------------------
 	m_background = ResourceManager::GetInstance()->GetSpriteById(0);
 	m_background->setAnchorPoint(Vec2(0, 0));
